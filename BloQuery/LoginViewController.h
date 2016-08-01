@@ -10,13 +10,4 @@
 
 @interface LoginViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UIView *inputsContainerView;
-@property (weak, nonatomic) IBOutlet UIButton *loginRegisterButton;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *loginRegisterSegmentedControl;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputsContainerViewHeightConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameFieldHeightConstraint;
-@property (weak, nonatomic) IBOutlet UITextField *userFullName;
-@property (weak, nonatomic) IBOutlet UITextField *userEmail;
-@property (weak, nonatomic) IBOutlet UITextField *userPassword;
-
 @end

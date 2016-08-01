@@ -6,11 +6,14 @@
 //  Copyright © 2016 Bloc. All rights reserved.
 //
 
-#import "QuestionsViewController.h"
+#import "QuestionsTableViewController.h"
 @import Firebase;
 
+@implementation QuestionsTableViewController
 
-@implementation QuestionsViewController
+-(void)viewDidLoad {
+    [super viewDidLoad];
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -33,11 +36,29 @@
 
 
 - (IBAction)logout:(id)sender {
-    
-    [[FIRAuth auth] signOut:nil];
+    NSError *error = nil;
+    [[FIRAuth auth] signOut:&error];
+    if (error) {
+        //TODO: Notify the user that sign out has failed
+    }
     NSLog(@"User logged out");
     [self loadLoginViewController];
     
+}
+
+#pragma mark - Table View Delegate Methods
+
+#pragma mark - Table View Data Source Method
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 10  ;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QuestionCell"];
+    
+    return cell;
 }
 
 @end
