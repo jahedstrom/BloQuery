@@ -106,6 +106,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Khb-nb-jbp">
                             <connections>
                                 <action selector="newQuestionButtonPressed:" destination="vwU-kH-cH1" id="gZJ-9N-hAX"/>
+                                <segue destination="XwB-Ci-Jce" kind="show" id="UYQ-lE-S8N"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -116,6 +117,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bn6-fb-wU5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-884.5" y="107.5"/>
+        </scene>
+        <!--Question View Controller-->
+        <scene sceneID="wFz-HL-95Q">
+            <objects>
+                <viewController id="XwB-Ci-Jce" customClass="QuestionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2X5-7k-6g6"/>
+                        <viewControllerLayoutGuide type="bottom" id="gIb-JE-VsX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NbS-2Z-B4M">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Ask a Question..." translatesAutoresizingMaskIntoConstraints="NO" id="nGu-ci-CFc">
+                                <rect key="frame" x="67" y="111" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="send"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3jT-2D-lJY">
+                                <rect key="frame" x="152" y="264" width="70" height="30"/>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submitButtonPressed:" destination="XwB-Ci-Jce" eventType="touchUpInside" id="zbY-yc-qXP"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hl1-35-o0j">
+                                <rect key="frame" x="103" y="319" width="169" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="questionTextView" destination="nGu-ci-CFc" id="oin-Le-8J7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i9V-xT-MFH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-19.5" y="-399.5"/>
         </scene>
         <!--Answer View Controller-->
         <scene sceneID="KoK-kY-HJh">
@@ -251,7 +294,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FxK-TL-QMw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-233.5" y="107.5"/>
+            <point key="canvasLocation" x="-19.5" y="375.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xQe-tY-Z51">

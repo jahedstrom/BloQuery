@@ -18,7 +18,7 @@
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSURL *profileImageURL;
 
-- (instancetype)initWithFIRUser:(FIRUser *)user;
+
 
 - (void)addProfilePicture:(UIImage *)image;
 

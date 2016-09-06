@@ -24,6 +24,8 @@
 		AB215ABA1D52E4BF000722B1 /* QuestionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215AB91D52E4BF000722B1 /* QuestionManager.m */; };
 		AB215ABD1D53C83D000722B1 /* AnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215ABC1D53C83D000722B1 /* AnswerViewController.m */; };
 		AB215AC01D543BD2000722B1 /* AnswerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215ABF1D543BD2000722B1 /* AnswerCell.m */; };
+		AB215AC51D7F30CB000722B1 /* QuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215AC41D7F30CB000722B1 /* QuestionViewController.m */; };
+		AB215AC81D7F45DC000722B1 /* FIRAuth+User.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215AC71D7F45DC000722B1 /* FIRAuth+User.m */; };
 		B7206CBE07CA20E86B25A2E0 /* libPods-BloQuery.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B6D13C0DEAAEF55EB9F68BD /* libPods-BloQuery.a */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +76,10 @@
 		AB215ABE1D543BD2000722B1 /* AnswerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerCell.h; sourceTree = "<group>"; };
 		AB215ABF1D543BD2000722B1 /* AnswerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerCell.m; sourceTree = "<group>"; };
 		AB215AC21D760D18000722B1 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		AB215AC31D7F30CB000722B1 /* QuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionViewController.h; sourceTree = "<group>"; };
+		AB215AC41D7F30CB000722B1 /* QuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionViewController.m; sourceTree = "<group>"; };
+		AB215AC61D7F45DC000722B1 /* FIRAuth+User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FIRAuth+User.h"; sourceTree = "<group>"; };
+		AB215AC71D7F45DC000722B1 /* FIRAuth+User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FIRAuth+User.m"; sourceTree = "<group>"; };
 		E8EBE9F2A435214FD0CBE508 /* Pods-BloQuery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BloQuery.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BloQuery/Pods-BloQuery.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,6 +172,8 @@
 			children = (
 				AB215AA11D4856F8000722B1 /* QuestionsTableViewController.h */,
 				AB215AA21D4856F8000722B1 /* QuestionsTableViewController.m */,
+				AB215AC31D7F30CB000722B1 /* QuestionViewController.h */,
+				AB215AC41D7F30CB000722B1 /* QuestionViewController.m */,
 				AB215ABB1D53C83D000722B1 /* AnswerViewController.h */,
 				AB215ABC1D53C83D000722B1 /* AnswerViewController.m */,
 				AB215AA41D4857D0000722B1 /* LoginViewController.h */,
@@ -178,6 +186,8 @@
 		AB215AA81D491A00000722B1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AB215AC61D7F45DC000722B1 /* FIRAuth+User.h */,
+				AB215AC71D7F45DC000722B1 /* FIRAuth+User.m */,
 				AB215AA91D4997F6000722B1 /* User.h */,
 				AB215AAA1D4997F6000722B1 /* User.m */,
 				AB215AB21D511BD2000722B1 /* Question.h */,
@@ -414,10 +424,12 @@
 			files = (
 				AB215AAB1D4997F6000722B1 /* User.m in Sources */,
 				AB215AA61D4857D0000722B1 /* LoginViewController.m in Sources */,
+				AB215AC51D7F30CB000722B1 /* QuestionViewController.m in Sources */,
 				AB215AA31D4856F8000722B1 /* QuestionsTableViewController.m in Sources */,
 				AB215AB71D52DFCD000722B1 /* Answer.m in Sources */,
 				AB215ABA1D52E4BF000722B1 /* QuestionManager.m in Sources */,
 				AB215AC01D543BD2000722B1 /* AnswerCell.m in Sources */,
+				AB215AC81D7F45DC000722B1 /* FIRAuth+User.m in Sources */,
 				AB215ABD1D53C83D000722B1 /* AnswerViewController.m in Sources */,
 				AB215A7D1D451E87000722B1 /* AppDelegate.m in Sources */,
 				AB215AB41D511BD2000722B1 /* Question.m in Sources */,

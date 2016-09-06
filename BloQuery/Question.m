@@ -10,7 +10,13 @@
 #import "User.h"
 #import "Answer.h"
 
+@import Firebase;
+@import FirebaseAuth;
+@import FirebaseDatabase;
+
 @interface Question ()
+
+@property (nonatomic, strong) FIRDatabaseReference *FIRref;
 
 
 @end
@@ -29,7 +35,7 @@
 }
 
 
-- (instancetype)initWithUser:(User *)user andQuestionText:(NSString *)questionText {
+- (instancetype)initWithUser:(FIRUser *)user andQuestionText:(NSString *)questionText {
     self = [super init];
     
     if (self) {
@@ -37,7 +43,8 @@
         self.questionText = questionText;
         self.answers = [[NSArray alloc] init];
         self.numberOfAnswers = 0;
-        // [self saveToFirebase] ?
+
+        [self saveToFirebase];
     }
     
     return self;
@@ -55,7 +62,7 @@
 
 - (NSDictionary *)dictionary {
     NSNumber *numberOfAnswers = [NSNumber numberWithInteger:self.numberOfAnswers];
-    return @{@"User" : self.user.name, @"questionText" : self.questionText, @"numberOfAnswers" : numberOfAnswers};
+    return @{@"User" : self.user.displayName, @"questionText" : self.questionText, @"numberOfAnswers" : numberOfAnswers};
 }
 
 - (void)saveToFirebase {
@@ -78,6 +85,12 @@
     // get firebase ref
     // build NSDictionary object
     // call setValues
+    
+    self.FIRref = [[FIRDatabase database] reference];
+    
+    [[[self.FIRref child:@"questions"] childByAutoId] setValue:[self dictionary]];
+    
+    
     
 }
 

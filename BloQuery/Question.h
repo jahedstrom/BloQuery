@@ -8,19 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-@class User;
+@class FIRUser;
 @class Answer;
 
 @interface Question : NSObject
 
 
-@property (nonatomic, strong) User *user;
+@property (nonatomic, strong) FIRUser *user;
 @property (nonatomic, strong) NSString *questionText;
 @property (nonatomic, assign) NSInteger numberOfAnswers;
 @property (nonatomic, strong) NSArray *answers;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
-- (instancetype)initWithUser:(User *)user andQuestionText:(NSString *)questionText;
+- (instancetype)initWithUser:(FIRUser *)user andQuestionText:(NSString *)questionText;
 
 - (Answer *)getAnswerForIndex:(NSInteger)index;
 - (void)loadAnswers;

@@ -14,14 +14,28 @@
 @interface User ()
 
 @property (nonatomic, strong) FIRUser *firUser;
-
+@property (nonatomic, strong) NSString *uid;
 @end
 
 
 @implementation User
 
++ (User *)currentUser {
+    return nil;
+}
+
++ (void)setCurrentUser:(User *)user {
+    
+}
+
 - (instancetype)initWithFIRUser:(FIRUser *)user {
     if (self = [super init]) {
+        
+        self.uid = user.uid;
+        self.name = user.displayName;
+        self.email = user.email;
+        self.profileImageURL = user.photoURL;
+        
     }
     
     return self;

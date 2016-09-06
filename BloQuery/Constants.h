@@ -6,4 +6,4 @@
 //  Copyright © 2016 Bloc. All rights reserved.
 //
 
-#define kFirebaseURL = @"gs://bloquery-a45f7.appspot.com";
+#define kFirebaseURL @"gs://bloquery-a45f7.appspot.com"
