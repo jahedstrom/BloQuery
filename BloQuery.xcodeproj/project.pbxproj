@@ -19,6 +19,11 @@
 		AB215AA61D4857D0000722B1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215AA51D4857D0000722B1 /* LoginViewController.m */; };
 		AB215AAB1D4997F6000722B1 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215AAA1D4997F6000722B1 /* User.m */; };
 		AB215AB01D4FFAA6000722B1 /* QuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215AAF1D4FFAA6000722B1 /* QuestionCell.m */; };
+		AB215AB41D511BD2000722B1 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215AB31D511BD2000722B1 /* Question.m */; };
+		AB215AB71D52DFCD000722B1 /* Answer.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215AB61D52DFCD000722B1 /* Answer.m */; };
+		AB215ABA1D52E4BF000722B1 /* QuestionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215AB91D52E4BF000722B1 /* QuestionManager.m */; };
+		AB215ABD1D53C83D000722B1 /* AnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215ABC1D53C83D000722B1 /* AnswerViewController.m */; };
+		AB215AC01D543BD2000722B1 /* AnswerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215ABF1D543BD2000722B1 /* AnswerCell.m */; };
 		B7206CBE07CA20E86B25A2E0 /* libPods-BloQuery.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B6D13C0DEAAEF55EB9F68BD /* libPods-BloQuery.a */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +63,17 @@
 		AB215AAA1D4997F6000722B1 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		AB215AAE1D4FFAA6000722B1 /* QuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionCell.h; sourceTree = "<group>"; };
 		AB215AAF1D4FFAA6000722B1 /* QuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionCell.m; sourceTree = "<group>"; };
+		AB215AB21D511BD2000722B1 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
+		AB215AB31D511BD2000722B1 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
+		AB215AB51D52DFCD000722B1 /* Answer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Answer.h; sourceTree = "<group>"; };
+		AB215AB61D52DFCD000722B1 /* Answer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Answer.m; sourceTree = "<group>"; };
+		AB215AB81D52E4BF000722B1 /* QuestionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionManager.h; sourceTree = "<group>"; };
+		AB215AB91D52E4BF000722B1 /* QuestionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionManager.m; sourceTree = "<group>"; };
+		AB215ABB1D53C83D000722B1 /* AnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerViewController.h; sourceTree = "<group>"; };
+		AB215ABC1D53C83D000722B1 /* AnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerViewController.m; sourceTree = "<group>"; };
+		AB215ABE1D543BD2000722B1 /* AnswerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerCell.h; sourceTree = "<group>"; };
+		AB215ABF1D543BD2000722B1 /* AnswerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerCell.m; sourceTree = "<group>"; };
+		AB215AC21D760D18000722B1 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		E8EBE9F2A435214FD0CBE508 /* Pods-BloQuery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BloQuery.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BloQuery/Pods-BloQuery.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				AB215AA81D491A00000722B1 /* Model */,
+				AB215AB11D4FFEA4000722B1 /* View */,
 				AB215AA71D4919D2000722B1 /* Controller */,
 				AB215A7B1D451E87000722B1 /* AppDelegate.h */,
 				AB215A7C1D451E87000722B1 /* AppDelegate.m */,
@@ -149,10 +166,11 @@
 			children = (
 				AB215AA11D4856F8000722B1 /* QuestionsTableViewController.h */,
 				AB215AA21D4856F8000722B1 /* QuestionsTableViewController.m */,
+				AB215ABB1D53C83D000722B1 /* AnswerViewController.h */,
+				AB215ABC1D53C83D000722B1 /* AnswerViewController.m */,
 				AB215AA41D4857D0000722B1 /* LoginViewController.h */,
 				AB215AA51D4857D0000722B1 /* LoginViewController.m */,
-				AB215AAE1D4FFAA6000722B1 /* QuestionCell.h */,
-				AB215AAF1D4FFAA6000722B1 /* QuestionCell.m */,
+				AB215AC21D760D18000722B1 /* Constants.h */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -162,8 +180,25 @@
 			children = (
 				AB215AA91D4997F6000722B1 /* User.h */,
 				AB215AAA1D4997F6000722B1 /* User.m */,
+				AB215AB21D511BD2000722B1 /* Question.h */,
+				AB215AB31D511BD2000722B1 /* Question.m */,
+				AB215AB51D52DFCD000722B1 /* Answer.h */,
+				AB215AB61D52DFCD000722B1 /* Answer.m */,
+				AB215AB81D52E4BF000722B1 /* QuestionManager.h */,
+				AB215AB91D52E4BF000722B1 /* QuestionManager.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		AB215AB11D4FFEA4000722B1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AB215AAE1D4FFAA6000722B1 /* QuestionCell.h */,
+				AB215AAF1D4FFAA6000722B1 /* QuestionCell.m */,
+				AB215ABE1D543BD2000722B1 /* AnswerCell.h */,
+				AB215ABF1D543BD2000722B1 /* AnswerCell.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		FD1CB3DA803A431D62C5182E /* Pods */ = {
@@ -380,7 +415,12 @@
 				AB215AAB1D4997F6000722B1 /* User.m in Sources */,
 				AB215AA61D4857D0000722B1 /* LoginViewController.m in Sources */,
 				AB215AA31D4856F8000722B1 /* QuestionsTableViewController.m in Sources */,
+				AB215AB71D52DFCD000722B1 /* Answer.m in Sources */,
+				AB215ABA1D52E4BF000722B1 /* QuestionManager.m in Sources */,
+				AB215AC01D543BD2000722B1 /* AnswerCell.m in Sources */,
+				AB215ABD1D53C83D000722B1 /* AnswerViewController.m in Sources */,
 				AB215A7D1D451E87000722B1 /* AppDelegate.m in Sources */,
+				AB215AB41D511BD2000722B1 /* Question.m in Sources */,
 				AB215A7A1D451E87000722B1 /* main.m in Sources */,
 				AB215AB01D4FFAA6000722B1 /* QuestionCell.m in Sources */,
 			);

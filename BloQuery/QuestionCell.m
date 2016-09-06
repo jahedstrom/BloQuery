@@ -7,11 +7,12 @@
 //
 
 #import "QuestionCell.h"
+#import "Question.h"
+#import "User.h"
 
 @interface QuestionCell ()
 
 @property (weak, nonatomic) IBOutlet UIView *QuestionBackgroundView;
-@property (weak, nonatomic) IBOutlet UIImageView *ProfileImage;
 
 
 
@@ -22,8 +23,27 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     self.QuestionBackgroundView.layer.cornerRadius = 5;
-    self.ProfileImage.layer.cornerRadius = 32;
-    self.ProfileImage.clipsToBounds = YES;
+    self.profileImage.layer.cornerRadius = 32;
+    self.profileImage.clipsToBounds = YES;
+}
+
+- (void)setQuestion:(Question *)question {
+    _question = question;
+    //TODO: get profile image for user (something like this?)
+//    self.profileImage.image = [question.user getProfileImage];
+    
+    if (question.numberOfAnswers == 1) {
+        self.numberOfAnswers.text = [NSString stringWithFormat:@"%ld Answer", (long) question.numberOfAnswers];
+    } else {
+        self.numberOfAnswers.text = [NSString stringWithFormat:@"%ld Answers", (long) question.numberOfAnswers];
+    }
+    
+    //TODO: assign 1,2, or 3 thumbs up depending on how many likes there are
+    NSString *likeSeries = [NSString stringWithUTF8String:"\xF0\x9F\x91\x8D \xF0\x9F\x91\x8D"];
+    self.likeLabel.text = likeSeries;
+    
+    self.questionLabel.text = question.questionText;
+    
 }
 
 @end

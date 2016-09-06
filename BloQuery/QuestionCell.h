@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class Question;
+
 @interface QuestionCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UILabel *questionLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
+@property (weak, nonatomic) IBOutlet UILabel *likeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *numberOfAnswers;
+
+@property (nonatomic, strong) Question *question;
 
 @end

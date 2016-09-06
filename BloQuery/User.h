@@ -13,8 +13,13 @@
 
 @interface User : NSObject
 
+@property (nonatomic, readonly) NSString *uid;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *email;
-@property (nonatomic, strong) NSString *profileImageURL;
+@property (nonatomic, strong) NSURL *profileImageURL;
+
+- (instancetype)initWithFIRUser:(FIRUser *)user;
+
+- (void)addProfilePicture:(UIImage *)image;
 
 @end

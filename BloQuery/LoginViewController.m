@@ -6,12 +6,14 @@
 //  Copyright © 2016 Bloc. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import "LoginViewController.h"
 #import "User.h"
 @import Firebase;
+@import FirebaseDatabase;
 @import FirebaseStorage;
 
-@interface LoginViewController ()
+@interface LoginViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UIView *inputsContainerView;
@@ -24,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *userPassword;
 
 @property (nonatomic, readonly) BOOL isInLoginMode;
+@property (nonatomic, strong) FIRDatabaseReference *reference;
 
 @end
 
@@ -39,10 +42,15 @@
     [super viewDidLoad];
     
     self.inputsContainerView.layer.cornerRadius = 5;
+    
+    self.reference = [[FIRDatabase database] reference];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    self.loginRegisterSegmentedControl.selectedSegmentIndex = 1;
+
     [self updateInputsContainerView];
 }
 
@@ -82,12 +90,18 @@
 - (IBAction)didTapProfileImageView:(UITapGestureRecognizer *)sender {
     //TODO: Handle profile image selection
     
-//    self.profileImageView.image = image selected from UIImagePickerController
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:picker animated:YES completion:nil];
     
 }
 
 - (IBAction)didPressLoginRegisterButton:(id)sender {
     
+    NSString *fullName = self.userFullName.text;
     NSString *email = self.userEmail.text;
     NSString *password = self.userPassword.text;
     UIImage *profileImage = self.profileImageView.image;
@@ -145,27 +159,39 @@
                         NSLog(@"File upload error: %@", error);
                     } else {
                         // Metadata contains file metadata such as size, content-type, and download URL.
-                        FIRUserProfileChangeRequest *changeRequest = [user profileChangeRequest];
+                        
+                        FIRDatabaseReference *userRef = [[self.reference child:@"users"] child:user.uid];
+                        
                         NSURL *downloadURL = [metadata downloadURL];
-                        changeRequest.photoURL = downloadURL;
-                        [changeRequest commitChangesWithCompletion:^(NSError *_Nullable error) {
-                            if (error) {
-                                // An error happened.
+                        NSDictionary *userDict = @{@"name" : fullName, @"email" : email, @"profile_image_url" : [downloadURL absoluteString]};
+                        
+                        [userRef updateChildValues:userDict withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+                            if (error != nil) {
+                                NSLog(@"User save error: %@", error);
                             } else {
-                                // Profile updated.
-                                NSLog(@"Profile Updated");
+                                NSLog(@"Successfully saved user");
+                                [self dismissViewControllerAnimated:YES completion:nil];
                             }
                         }];
                     }
                 }];
-
-                
-                [self dismissViewControllerAnimated:YES completion:nil];
-
             }
-
         }];
     }
 }
+
+#pragma mark - UIImagePickerController Delegate Methods
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *, id> *)info {
+    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+    self.profileImageView.image = editedImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
 
 @end

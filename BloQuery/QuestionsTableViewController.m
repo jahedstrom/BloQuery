@@ -7,11 +7,22 @@
 //
 
 #import "QuestionsTableViewController.h"
+#import "QuestionManager.h"
+#import "QuestionCell.h"
+#import "AnswerViewController.h"
+
+
 @import Firebase;
+
+@interface QuestionsTableViewController ()
+
+
+
+@end
 
 @implementation QuestionsTableViewController
 
--(void)viewDidLoad {
+- (void)viewDidLoad {
     [super viewDidLoad];
 }
 
@@ -34,7 +45,6 @@
 
 }
 
-
 - (IBAction)logout:(id)sender {
     NSError *error = nil;
     [[FIRAuth auth] signOut:&error];
@@ -46,19 +56,40 @@
     
 }
 
+- (IBAction)newQuestionButtonPressed:(UIBarButtonItem *)sender {
+    
+    NSLog(@"New question button pressed");
+}
+
 #pragma mark - Table View Delegate Methods
 
 #pragma mark - Table View Data Source Method
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10  ;
+    return [QuestionManager sharedInstance].questions.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QuestionCell"];
+    QuestionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QuestionCell"];
     
+    cell.question = [QuestionManager sharedInstance].questions[indexPath.row];
+
     return cell;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"showAnswerView"]) {
+        
+        NSIndexPath *selectedPath = [self.tableView indexPathForSelectedRow];
+        
+        AnswerViewController *controller = (AnswerViewController *)segue.destinationViewController;
+        
+        controller.question = [QuestionManager sharedInstance].questions[selectedPath.row];
+    }
+    
+    
 }
 
 @end
