@@ -42,7 +42,7 @@
 
 - (void)addProfilePicture:(UIImage *)image complete:(void (^)(NSURL *profileImageURL, NSError *error))block {
 
-    // Store user profile image into Firebase storage, then update user.photoURL to point to that location
+    // Store user profile image into Firebase storage
     //Create UUID for profile image name
     NSString *profileImageUUID = [NSUUID UUID].UUIDString;
     NSString *profileImageName = [profileImageUUID stringByAppendingString:@".jpg"];
@@ -65,8 +65,6 @@
             block(nil, error);
         } else {
             // Metadata contains file metadata such as size, content-type, and download URL.
-            
-            // this block has a void return type.  What is the best way to return the URL to the caller
             NSURL *profileImageURL = [metadata downloadURL];
             block(profileImageURL, nil);
            

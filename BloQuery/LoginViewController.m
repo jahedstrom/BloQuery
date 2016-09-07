@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "LoginViewController.h"
-#import "User.h"
 #import "Constants.h"
 #import "FIRUser+User.h"
 

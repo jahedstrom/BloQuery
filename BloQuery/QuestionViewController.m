@@ -8,7 +8,6 @@
 
 #import "QuestionViewController.h"
 #import "Question.h"
-#import "User.h"
 
 @import FirebaseAuth;
 
