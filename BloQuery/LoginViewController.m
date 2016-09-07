@@ -10,6 +10,8 @@
 #import "LoginViewController.h"
 #import "User.h"
 #import "Constants.h"
+#import "FIRUser+User.h"
+
 @import Firebase;
 @import FirebaseDatabase;
 @import FirebaseStorage;
@@ -133,14 +135,17 @@
             }
             if (user != nil) {
                 NSLog(@"successfully logged in");
-                NSLog(@"User email: %@", user.email);
-                NSLog(@"User uid: %@", user.uid);
                 
-                // addUserData method call
+                NSDictionary *userDict = @{@"name" : fullName, @"email" : email, @"image" : profileImage};
                 
-                
-                // addProfilePicture method call
-                
+                [user addUserData:userDict complete:^(NSError *error) {
+                    if (error == nil) {
+                        [self dismissViewControllerAnimated:YES completion:nil];
+                    } else {
+                        //TODO: Show the error
+                    }
+                }];
+               
             }
         }];
     }
