@@ -13,7 +13,7 @@
 
 @interface QuestionViewController ()
 
-@property (weak, nonatomic) IBOutlet UITextView *questionTextView;
+@property (weak, nonatomic) IBOutlet UITextField *questionTextField;
 
 @end
 
@@ -22,23 +22,29 @@
 - (void)viewDidLoad {
   
     //To make a border
-    [self.questionTextView.layer setBorderColor:[[[UIColor blackColor] colorWithAlphaComponent:0.5] CGColor]];
-    [self.questionTextView.layer setBorderWidth:2.0];
-    self.questionTextView.layer.cornerRadius = 5;
-    self.questionTextView.clipsToBounds = YES;
+//    [self.questionTextField.layer setBorderColor:[[[UIColor blackColor] colorWithAlphaComponent:0.5] CGColor]];
+//    [self.questionTextField.layer setBorderWidth:2.0];
+//    self.questionTextField.layer.cornerRadius = 5;
+//    self.questionTextField.clipsToBounds = YES;
+    
 }
 
 
 - (IBAction)submitButtonPressed:(UIButton *)sender {
     
-    // create question
     
-    // How to get current user?
     FIRUser *firUser = [FIRAuth auth].currentUser;
 
-    Question *newQuestion = [[Question alloc] initWithUser:firUser andQuestionText:self.questionTextView.text];
+    // create question
+    Question *newQuestion = [[Question alloc] initWithUser:firUser andQuestionText:self.questionTextField.text];
     
-    NSLog(@"Question Text : %@", self.questionTextView.text);
+    [newQuestion saveToFirebase];
+    
+    NSLog(@"Question Text : %@", self.questionTextField.text);
+    
+    // go back to Questions table view controller
+    [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 @end

@@ -8,8 +8,6 @@
 
 #import "AnswerCell.h"
 #import "Answer.h"
-#import "User.h"
-
 
 @interface AnswerCell ()
 

@@ -24,6 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -33,8 +34,12 @@
     
     if (user != nil) {
         // User is signed in.
+        [[QuestionManager sharedInstance] retrieveQuestionsWithCompletionHandler:^(NSArray *questions, NSError *error) {
+            [self.tableView reloadData];
+        }];
     } else {
         // No user is signed in, present Login View Controller
+        
         // use this to prevent warning "Unbalanced calls to begin/end appearance transitions.."
         [self performSelector:@selector(loadLoginViewController) withObject:nil afterDelay:0.0];
     }

@@ -7,7 +7,6 @@
 //
 
 #import "Question.h"
-#import "User.h"
 #import "Answer.h"
 
 @import Firebase;
@@ -16,7 +15,7 @@
 
 @interface Question ()
 
-@property (nonatomic, strong) FIRDatabaseReference *FIRref;
+@property (nonatomic, strong) FIRDatabaseReference *firRef;
 
 
 @end
@@ -28,6 +27,10 @@
     
     if (self) {
         //TODO: parse dictionary into question object
+        self.questionUID = dictionary[@"UID"];
+        self.questionText = dictionary[@"questionText"];
+        self.numberOfAnswers = [dictionary[@"numberOfAnswers"] integerValue];
+        self.answers = [[NSArray alloc] init];
         }
     
     
@@ -39,7 +42,7 @@
     self = [super init];
     
     if (self) {
-        self.user = user;
+        self.questionUID = user.uid;
         self.questionText = questionText;
         self.answers = [[NSArray alloc] init];
         self.numberOfAnswers = 0;
@@ -62,7 +65,7 @@
 
 - (NSDictionary *)dictionary {
     NSNumber *numberOfAnswers = [NSNumber numberWithInteger:self.numberOfAnswers];
-    return @{@"User" : self.user.displayName, @"questionText" : self.questionText, @"numberOfAnswers" : numberOfAnswers};
+    return @{@"UID" : self.questionUID, @"questionText" : self.questionText, @"numberOfAnswers" : numberOfAnswers};
 }
 
 - (void)saveToFirebase {
@@ -77,7 +80,7 @@
     //    answers
     //      -Question AutoUID
     //          - Answer1
-    //              -user [NSString]
+    //              -user.uid [NSString]
     //              -Answertext [NSString]
     //          - Answer2 {...}
     //          - Answer3 {...}
@@ -86,12 +89,9 @@
     // build NSDictionary object
     // call setValues
     
-    self.FIRref = [[FIRDatabase database] reference];
+    self.firRef = [[FIRDatabase database] reference];
     
-    [[[self.FIRref child:@"questions"] childByAutoId] setValue:[self dictionary]];
-    
-    
-    
+    [[[self.firRef child:@"questions"] childByAutoId] setValue:[self dictionary]];
 }
 
 - (void)loadAnswers {

@@ -14,7 +14,7 @@
 @interface Question : NSObject
 
 
-@property (nonatomic, strong) FIRUser *user;
+@property (nonatomic, strong) NSString *questionUID;
 @property (nonatomic, strong) NSString *questionText;
 @property (nonatomic, assign) NSInteger numberOfAnswers;
 @property (nonatomic, strong) NSArray *answers;

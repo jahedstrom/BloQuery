@@ -36,16 +36,34 @@
     if (self) {
         
         self.questions = [NSMutableArray array];
-        
-        [self loadTestData];
+ 
+//        [self loadTestData];
         
     }
     
     return self;
 }
 
-- (void)retrieveQuestions {
-    //CONNECT TO Firebase
+- (void)retrieveQuestionsWithCompletionHandler:(void (^)(NSArray *questions, NSError *error))block {
+//CONNECT TO Firebase
+    
+    FIRDatabaseReference *firRef = [[[FIRDatabase database] reference] child:@"questions"];
+    
+    [firRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+//        NSLog(@"snapshot: %@", snapshot.value);
+        
+        NSDictionary *questionDict = snapshot.value;
+        
+        [questionDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+             NSLog(@"%@ => %@", key, obj);
+            Question *question = [[Question alloc] initWithDictionary:obj];
+            [_questions addObject:question];
+        }];
+        
+        // need to reload tableview data at this point?
+        
+        block(self.questions, nil);
+    }];
 }
 
 - (void)loadTestData {

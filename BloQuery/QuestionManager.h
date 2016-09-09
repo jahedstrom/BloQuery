@@ -15,6 +15,6 @@
 
 + (instancetype)sharedInstance;
 
-- (void)retrieveQuestions;
+- (void)retrieveQuestionsWithCompletionHandler:(void (^)(NSArray *questions, NSError *error))block;
 
 @end
