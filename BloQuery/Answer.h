@@ -13,6 +13,6 @@
 @interface Answer : NSObject
 
 @property (nonatomic, strong) NSString *answerText;
-@property (nonatomic, strong) User *user;
+@property (nonatomic, strong) NSString *answerUID;
 
 @end

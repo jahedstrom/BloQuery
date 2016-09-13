@@ -20,7 +20,7 @@
 @implementation QuestionViewController
 
 - (void)viewDidLoad {
-  
+    [super viewDidLoad];
     //To make a border
 //    [self.questionTextField.layer setBorderColor:[[[UIColor blackColor] colorWithAlphaComponent:0.5] CGColor]];
 //    [self.questionTextField.layer setBorderWidth:2.0];
@@ -38,13 +38,14 @@
     // create question
     Question *newQuestion = [[Question alloc] initWithUser:firUser andQuestionText:self.questionTextField.text];
     
-    [newQuestion saveToFirebase];
-    
-    NSLog(@"Question Text : %@", self.questionTextField.text);
-    
-    // go back to Questions table view controller
-    [self.navigationController popViewControllerAnimated:YES];
-    
+    [newQuestion saveToFirebaseWithCompletionHandler:^(NSError *error) {
+        if (error == nil) {
+            // go back to Questions table view controller
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            //TODO something with error
+        }
+    }];
 }
 
 @end

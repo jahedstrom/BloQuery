@@ -32,6 +32,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     NSUInteger r = arc4random_uniform(90) + 60;
     
     CGFloat height = (CGFloat)r;

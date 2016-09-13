@@ -46,8 +46,6 @@
         self.questionText = questionText;
         self.answers = [[NSArray alloc] init];
         self.numberOfAnswers = 0;
-
-        [self saveToFirebase];
     }
     
     return self;
@@ -68,7 +66,7 @@
     return @{@"UID" : self.questionUID, @"questionText" : self.questionText, @"numberOfAnswers" : numberOfAnswers};
 }
 
-- (void)saveToFirebase {
+- (void)saveToFirebaseWithCompletionHandler:(void (^)(NSError *))block {
  // store self.user, questionText, answers, and numberOfAnswers into Firebase
     // for flatter data structure organize like this:
     //    questions
@@ -92,6 +90,10 @@
     self.firRef = [[FIRDatabase database] reference];
     
     [[[self.firRef child:@"questions"] childByAutoId] setValue:[self dictionary]];
+    
+    block(nil);
+    
+    
 }
 
 - (void)loadAnswers {

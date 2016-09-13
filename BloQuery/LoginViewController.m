@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "LoginViewController.h"
+#import "QuestionsTableViewController.h"
 #import "Constants.h"
+#import "QuestionManager.h"
 #import "FIRUser+User.h"
 
 @import Firebase;
@@ -123,7 +125,6 @@
                 NSLog(@"successfully logged in");
                 [self dismissViewControllerAnimated:YES completion:nil];
             }
-            
         }];
     } else {
         [[FIRAuth auth] createUserWithEmail:email password:password completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {

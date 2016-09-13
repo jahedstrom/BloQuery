@@ -45,8 +45,6 @@
 }
 
 - (void)retrieveQuestionsWithCompletionHandler:(void (^)(NSArray *questions, NSError *error))block {
-//CONNECT TO Firebase
-    
     FIRDatabaseReference *firRef = [[[FIRDatabase database] reference] child:@"questions"];
     
     [firRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
@@ -54,20 +52,23 @@
         
         NSDictionary *questionDict = snapshot.value;
         
-        [questionDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-             NSLog(@"%@ => %@", key, obj);
-            Question *question = [[Question alloc] initWithDictionary:obj];
-            [_questions addObject:question];
-        }];
-        
-        // need to reload tableview data at this point?
-        
+        if (questionDict != nil) {
+//            NSLog(@"snapshot: %@", snapshot.value);
+//            Question *question = [[Question alloc] initWithDictionary:snapshot.value];
+//            [_questions addObject:question];
+            [_questions removeAllObjects];
+            [questionDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                //             NSLog(@"%@ => %@", key, obj);
+                Question *question = [[Question alloc] initWithDictionary:obj];
+                [_questions addObject:question];
+            }];
+        }
+        //TODO check for errors and if necessary generate NSError object to send back in block
         block(self.questions, nil);
     }];
 }
 
 - (void)loadTestData {
-    
     for (int i = 0; i < 10; i++) {
         Question *question = [[Question alloc] init];
         

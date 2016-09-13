@@ -24,7 +24,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -37,6 +36,7 @@
         [[QuestionManager sharedInstance] retrieveQuestionsWithCompletionHandler:^(NSArray *questions, NSError *error) {
             [self.tableView reloadData];
         }];
+        
     } else {
         // No user is signed in, present Login View Controller
         
@@ -49,6 +49,7 @@
     [self performSegueWithIdentifier:@"LoginViewController" sender:self];
 
 }
+
 
 - (IBAction)logout:(id)sender {
     NSError *error = nil;
@@ -71,6 +72,7 @@
 #pragma mark - Table View Data Source Method
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"Number of items: %lu", (unsigned long)[QuestionManager sharedInstance].questions.count);
     return [QuestionManager sharedInstance].questions.count;
 }
 
