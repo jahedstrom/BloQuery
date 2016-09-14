@@ -10,6 +10,7 @@
 #import "AnswerCell.h"
 #import "QuestionManager.h"
 #import "Question.h"
+#import "NewAnswerController.h"
 
 @interface AnswerViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -19,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *questionProfileImage;
 
 
+@property (weak, nonatomic) IBOutlet UITableView *answerTableView;
 
 @end
 
@@ -26,6 +28,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.answerTableView.delegate = self;
+    self.answerTableView.dataSource = self;
     
     self.questionBackgroundView.layer.cornerRadius = 5;
     self.questionProfileImage.layer.cornerRadius = 32;
@@ -58,6 +63,16 @@
     cell.answer = [self.question getAnswerForIndex:indexPath.row];
     
     return cell;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"showNewAnswerController"]) {
+        
+        NewAnswerController *controller = (NewAnswerController *)segue.destinationViewController;
+        
+        controller.question = self.question;
+    }
 }
 
 @end

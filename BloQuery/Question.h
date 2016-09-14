@@ -23,6 +23,7 @@
 - (instancetype)initWithUser:(FIRUser *)user andQuestionText:(NSString *)questionText;
 
 - (Answer *)getAnswerForIndex:(NSInteger)index;
+- (void)addAnswerToQuestion:(Answer *)answer;
 - (void)loadAnswers;
 
 - (void)saveToFirebaseWithCompletionHandler:(void (^)(NSError *error))block;

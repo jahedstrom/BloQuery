@@ -157,7 +157,7 @@
             </objects>
             <point key="canvasLocation" x="-19.5" y="-399.5"/>
         </scene>
-        <!--Answer View Controller-->
+        <!--Answers-->
         <scene sceneID="KoK-kY-HJh">
             <objects>
                 <viewController id="2U7-cp-5Dx" customClass="AnswerViewController" sceneMemberID="viewController">
@@ -172,9 +172,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jI9-dJ-h4b">
                                 <rect key="frame" x="16" y="72" width="249" height="60"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJ7-ed-qNJ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJ7-ed-qNJ">
                                         <rect key="frame" x="8" y="8" width="233" height="44"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -281,8 +281,16 @@
                             <constraint firstItem="0RL-C9-dQi" firstAttribute="top" secondItem="jI9-dJ-h4b" secondAttribute="bottom" constant="12" id="tqH-8x-qA7"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Answers" id="YmO-7u-MSc">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="CDW-rE-N7f">
+                            <connections>
+                                <segue destination="NnD-db-HXE" kind="show" identifier="showNewAnswerController" id="zqe-M2-DT1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="answerTableView" destination="0RL-C9-dQi" id="MOp-3P-MrZ"/>
                         <outlet property="questionBackgroundView" destination="jI9-dJ-h4b" id="DiK-dN-Xb5"/>
                         <outlet property="questionLabel" destination="PJ7-ed-qNJ" id="Im4-eh-mk5"/>
                         <outlet property="questionLabelHeightConstraint" destination="mN3-16-UFD" id="gyc-F4-22B"/>
@@ -292,6 +300,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FxK-TL-QMw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-19.5" y="375.5"/>
+        </scene>
+        <!--New Answer Controller-->
+        <scene sceneID="GmU-Ui-fu8">
+            <objects>
+                <viewController id="NnD-db-HXE" customClass="NewAnswerController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="P9V-Dx-a0A"/>
+                        <viewControllerLayoutGuide type="bottom" id="iTm-c5-sgq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7rs-T1-af7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type an answer..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="01O-i3-WFG">
+                                <rect key="frame" x="70" y="185" width="234" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JGh-nC-RA6">
+                                <rect key="frame" x="144" y="273" width="87" height="30"/>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submitNewAnswerButtonPressed:" destination="NnD-db-HXE" eventType="touchUpInside" id="vRH-1J-gNS"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtp-23-wF2">
+                                <rect key="frame" x="70" y="88" width="233" height="44"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="questionLabel" destination="vtp-23-wF2" id="Q43-id-ID8"/>
+                        <outlet property="theNewAnswerTextField" destination="01O-i3-WFG" id="Lmw-M3-pmd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P9T-29-9Me" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="625.5" y="375.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xQe-tY-Z51">

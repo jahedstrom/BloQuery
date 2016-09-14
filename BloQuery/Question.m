@@ -66,6 +66,21 @@
     return @{@"UID" : self.questionUID, @"questionText" : self.questionText, @"numberOfAnswers" : numberOfAnswers};
 }
 
+- (void)addAnswerToQuestion:(Answer *)answer {
+    //get current answer array
+    NSMutableArray *addAnswer = [[NSMutableArray alloc] initWithArray:self.answers];
+    
+    // add the new answer
+    [addAnswer addObject:answer];
+    
+    // assign back to original array
+    self.answers = addAnswer;
+    
+    // increase answer count 
+    self.numberOfAnswers += 1;
+}
+
+
 - (void)saveToFirebaseWithCompletionHandler:(void (^)(NSError *))block {
  // store self.user, questionText, answers, and numberOfAnswers into Firebase
     // for flatter data structure organize like this:
@@ -89,7 +104,13 @@
     
     self.firRef = [[FIRDatabase database] reference];
     
-    [[[self.firRef child:@"questions"] childByAutoId] setValue:[self dictionary]];
+    FIRDatabaseReference *questionRef;
+    
+    questionRef = [[self.firRef child:@"questions"] childByAutoId];
+                   
+    [questionRef setValue:[self dictionary]];
+    
+    NSLog(@"questionRef : %@", questionRef);
     
     block(nil);
     

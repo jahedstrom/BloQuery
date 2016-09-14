@@ -46,7 +46,7 @@
 }
 
 - (NSDictionary *)dictionary {
-    return @{@"UID" : self.answerUID, @"questionText" : self.answerText};
+    return @{@"UID" : self.answerUID, @"answerText" : self.answerText};
 }
 
 - (void)saveToFirebaseWithCompletionHandler:(void (^)(NSError *))block {
@@ -62,7 +62,7 @@
     //      -Question AutoUID
     //          - Answer1
     //              -user.uid [NSString]
-    //              -Answertext [NSString]
+    //              -answerText [NSString]
     //          - Answer2 {...}
     //          - Answer3 {...}
     
