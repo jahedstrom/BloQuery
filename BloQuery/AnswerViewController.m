@@ -19,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *questionLabelHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIImageView *questionProfileImage;
 
-
 @property (weak, nonatomic) IBOutlet UITableView *answerTableView;
 
 @end
@@ -44,7 +43,6 @@
     
     [self.question retrieveAnswersWithCompletionHandler:^(NSArray *answers, NSError *error) {
         if (error == nil ) {
-//            NSLog(@"Answers : %@", answers);
             [self.answerTableView reloadData];
         } else {
             if (error.code == -1) {

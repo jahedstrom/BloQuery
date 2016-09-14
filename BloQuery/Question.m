@@ -26,7 +26,6 @@
     self = [super init];
     
     if (self) {
-        //TODO: parse dictionary into question object
         self.questionUID = dictionary[@"UID"];
         self.questionText = dictionary[@"questionText"];
         self.firKey = key;
@@ -125,18 +124,13 @@
     FIRDatabaseReference *firAnswersRef = [[[[FIRDatabase database] reference] child:@"answers"] child:self.firKey];
     
     [firAnswersRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        //        NSLog(@"snapshot: %@", snapshot.value);
         
         NSDictionary *answerDict = snapshot.value;
         NSMutableArray *tempAnswers = [[NSMutableArray alloc] initWithCapacity:1];
         NSError *error;
         
         if (!(answerDict == (id)[NSNull null])) {
-            //            NSLog(@"snapshot: %@", snapshot.value);
-            //            Question *question = [[Question alloc] initWithDictionary:snapshot.value];
-            //            [_questions addObject:question];
             [answerDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-                //             NSLog(@"%@ => %@", key, obj);
                 Answer *answer = [[Answer alloc] initWithDictionary:obj];
                 [tempAnswers addObject:answer];
             }];
@@ -152,22 +146,10 @@
                                        };
             error = [NSError errorWithDomain:@"com.jahedstrom.BloQuery" code:-1 userInfo:userInfo];
         }
-        //TODO check for errors and if necessary generate NSError object to send back in block
+        
         block(self.answers, error);
     }];
  
-}
-
-- (void)loadAnswers {
-    // do something to get the answers for each question
-    NSMutableArray *tempAnswers = [NSMutableArray arrayWithCapacity:8];
-    for (int i =0; i < self.numberOfAnswers; i++) {
-        Answer *tmpAnswer = [[Answer alloc] init];
-        NSString *randomAnswer = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce blandit fringilla justo quis euismod. Mauris nec laoreet risus. Nulla facilisi.";
-        tmpAnswer.answerText = randomAnswer;
-        [tempAnswers addObject:tmpAnswer];
-    }
-    self.answers = tempAnswers;
 }
 
 - (Answer *)getAnswerForIndex:(NSInteger)index {

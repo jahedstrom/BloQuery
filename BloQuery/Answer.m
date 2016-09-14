@@ -24,7 +24,6 @@
     self = [super init];
     
     if (self) {
-        //TODO: parse dictionary into question object
         self.answerUID = dictionary[@"UID"];
         self.answerText = dictionary[@"answerText"];
     }
@@ -72,9 +71,7 @@
     
     self.firRef = [[FIRDatabase database] reference];
     
-    // get question.firKey and use for new child node
-    
-    
+    // Use question.firKey for new child node, all answers under that node will have an AutoID
     [[[[self.firRef child:@"answers"] child:key] childByAutoId] setValue:[self dictionary]];
     
     block(nil);

@@ -25,7 +25,6 @@
 
 - (Answer *)getAnswerForIndex:(NSInteger)index;
 - (void)addAnswerToQuestion:(Answer *)answer;
-- (void)loadAnswers;
 
 - (void)saveToFirebaseWithCompletionHandler:(void (^)(NSError *error))block;
 - (void)retrieveAnswersWithCompletionHandler:(void (^)(NSArray *answers, NSError *error))block;

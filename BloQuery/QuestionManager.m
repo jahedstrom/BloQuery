@@ -53,12 +53,8 @@
         NSDictionary *questionDict = snapshot.value;
         
         if (questionDict != nil) {
-//            NSLog(@"snapshot: %@", snapshot.value);
-//            Question *question = [[Question alloc] initWithDictionary:snapshot.value];
-//            [_questions addObject:question];
             [_questions removeAllObjects];
             [questionDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-                //             NSLog(@"%@ => %@", key, obj);
                 Question *question = [[Question alloc] initWithDictionary:obj andKey:(NSString *)key];
                 [_questions addObject:question];
             }];
@@ -75,9 +71,7 @@
         question.questionText = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris imperdiet ut nunc at blandit. Aliquam vitae quam ut orci tincidunt facilisis ac at enim. Cras rhoncus nisi quis nibh dapibus, vitae rhoncus sapien posuere.";
         
         question.numberOfAnswers = arc4random_uniform(15);
-        
-        [question loadAnswers];
-        
+                
         [_questions addObject:question];
     }
 }
