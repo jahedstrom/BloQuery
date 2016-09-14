@@ -33,12 +33,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    NSUInteger r = arc4random_uniform(90) + 60;
-    
-    CGFloat height = (CGFloat)r;
-    
-    self.questionLabelHeightConstraint.constant = height;
-    NSLog(@"question height = %0.2f", height);
+
+//    self.questionLabelHeightConstraint.constant = height;
+    self.questionLabel.text = self.question.questionText;
 }
 
 #pragma mark - Table View Delegate Methods
