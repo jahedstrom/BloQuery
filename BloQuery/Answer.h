@@ -20,6 +20,6 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 - (instancetype)initWithUser:(FIRUser *)user andAnswerText:(NSString *)answerText;
 
-- (void)saveToFirebaseWithCompletionHandler:(void (^)(NSError *error))block;
+- (void)saveToFirebaseWithKey:(NSString *)key andCompletionHandler:(void (^)(NSError *error))block;
 
 @end

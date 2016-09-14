@@ -59,7 +59,7 @@
             [_questions removeAllObjects];
             [questionDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
                 //             NSLog(@"%@ => %@", key, obj);
-                Question *question = [[Question alloc] initWithDictionary:obj];
+                Question *question = [[Question alloc] initWithDictionary:obj andKey:(NSString *)key];
                 [_questions addObject:question];
             }];
         }

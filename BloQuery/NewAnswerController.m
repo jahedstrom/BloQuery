@@ -42,7 +42,7 @@
     
     [self.question addAnswerToQuestion:newAnswer];
     
-    [newAnswer saveToFirebaseWithCompletionHandler:^(NSError *error) {
+    [newAnswer saveToFirebaseWithKey:self.question.firKey andCompletionHandler:^(NSError *error) {
         if (error == nil) {
             // go back to Answer view controller
             [self.navigationController popViewControllerAnimated:YES];

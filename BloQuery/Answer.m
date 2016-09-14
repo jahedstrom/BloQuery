@@ -49,7 +49,7 @@
     return @{@"UID" : self.answerUID, @"answerText" : self.answerText};
 }
 
-- (void)saveToFirebaseWithCompletionHandler:(void (^)(NSError *))block {
+- (void)saveToFirebaseWithKey:(NSString *)key andCompletionHandler:(void (^)(NSError *))block {
     // store self.user, questionText, answers, and numberOfAnswers into Firebase
     // for flatter data structure organize like this:
     //    questions
@@ -60,11 +60,11 @@
     //
     //    answers
     //      -Question AutoUID
-    //          - Answer1
+    //          - AutoID
     //              -user.uid [NSString]
     //              -answerText [NSString]
-    //          - Answer2 {...}
-    //          - Answer3 {...}
+    //          - AutoID {...}
+    //          - AutoID {...}
     
     // get firebase ref
     // build NSDictionary object
@@ -72,7 +72,10 @@
     
     self.firRef = [[FIRDatabase database] reference];
     
-    [[[self.firRef child:@"answers"] childByAutoId] setValue:[self dictionary]];
+    // get question.firKey and use for new child node
+    
+    
+    [[[[self.firRef child:@"answers"] child:key] childByAutoId] setValue:[self dictionary]];
     
     block(nil);
     
