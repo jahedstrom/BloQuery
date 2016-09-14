@@ -25,6 +25,7 @@
 		AB215AC01D543BD2000722B1 /* AnswerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215ABF1D543BD2000722B1 /* AnswerCell.m */; };
 		AB215AC51D7F30CB000722B1 /* QuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215AC41D7F30CB000722B1 /* QuestionViewController.m */; };
 		AB215AC81D7F45DC000722B1 /* FIRUser+User.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215AC71D7F45DC000722B1 /* FIRUser+User.m */; };
+		AB215ACB1D88DE1A000722B1 /* AnswerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215ACA1D88DE1A000722B1 /* AnswerView.m */; };
 		B7206CBE07CA20E86B25A2E0 /* libPods-BloQuery.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B6D13C0DEAAEF55EB9F68BD /* libPods-BloQuery.a */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,8 @@
 		AB215AC41D7F30CB000722B1 /* QuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionViewController.m; sourceTree = "<group>"; };
 		AB215AC61D7F45DC000722B1 /* FIRUser+User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FIRUser+User.h"; sourceTree = "<group>"; };
 		AB215AC71D7F45DC000722B1 /* FIRUser+User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FIRUser+User.m"; sourceTree = "<group>"; };
+		AB215AC91D88DE1A000722B1 /* AnswerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerView.h; sourceTree = "<group>"; };
+		AB215ACA1D88DE1A000722B1 /* AnswerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerView.m; sourceTree = "<group>"; };
 		E8EBE9F2A435214FD0CBE508 /* Pods-BloQuery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BloQuery.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BloQuery/Pods-BloQuery.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -202,6 +205,8 @@
 				AB215AAF1D4FFAA6000722B1 /* QuestionCell.m */,
 				AB215ABE1D543BD2000722B1 /* AnswerCell.h */,
 				AB215ABF1D543BD2000722B1 /* AnswerCell.m */,
+				AB215AC91D88DE1A000722B1 /* AnswerView.h */,
+				AB215ACA1D88DE1A000722B1 /* AnswerView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -423,6 +428,7 @@
 				AB215AB71D52DFCD000722B1 /* Answer.m in Sources */,
 				AB215ABA1D52E4BF000722B1 /* QuestionManager.m in Sources */,
 				AB215AC01D543BD2000722B1 /* AnswerCell.m in Sources */,
+				AB215ACB1D88DE1A000722B1 /* AnswerView.m in Sources */,
 				AB215AC81D7F45DC000722B1 /* FIRUser+User.m in Sources */,
 				AB215ABD1D53C83D000722B1 /* AnswerViewController.m in Sources */,
 				AB215A7D1D451E87000722B1 /* AppDelegate.m in Sources */,
@@ -557,8 +563,94 @@
 			baseConfigurationReference = E8EBE9F2A435214FD0CBE508 /* Pods-BloQuery.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks/frameworks\"",
+					"\"${PODS_ROOT}/FirebaseAuth/Frameworks/frameworks\"",
+					"\"${PODS_ROOT}/FirebaseDatabase/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseStorage/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleInterchangeUtilities/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleNetworkingUtilities/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleParsingUtilities/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleSymbolUtilities/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleUtilities/Frameworks\"",
+				);
 				INFOPLIST_FILE = BloQuery/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAnalytics\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAuth\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseDatabase\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseStorage\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/GoogleInterchangeUtilities\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/GoogleNetworkingUtilities\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/GoogleParsingUtilities\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/GoogleSymbolUtilities\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AdSupport\"",
+					"-framework",
+					"\"AddressBook\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"FirebaseAnalytics\"",
+					"-framework",
+					"\"FirebaseAuth\"",
+					"-framework",
+					"\"FirebaseDatabase\"",
+					"-framework",
+					"\"FirebaseInstanceID\"",
+					"-framework",
+					"\"FirebaseStorage\"",
+					"-framework",
+					"\"GoogleInterchangeUtilities\"",
+					"-framework",
+					"\"GoogleNetworkingUtilities\"",
+					"-framework",
+					"\"GoogleParsingUtilities\"",
+					"-framework",
+					"\"GoogleSymbolUtilities\"",
+					"-framework",
+					"\"GoogleUtilities\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"SafariServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"StoreKit\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jahedstrom.BloQuery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -569,8 +661,94 @@
 			baseConfigurationReference = 96050510B984B5008D149C5A /* Pods-BloQuery.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks/frameworks\"",
+					"\"${PODS_ROOT}/FirebaseAuth/Frameworks/frameworks\"",
+					"\"${PODS_ROOT}/FirebaseDatabase/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseStorage/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleInterchangeUtilities/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleNetworkingUtilities/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleParsingUtilities/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleSymbolUtilities/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleUtilities/Frameworks\"",
+				);
 				INFOPLIST_FILE = BloQuery/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAnalytics\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAuth\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseDatabase\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseStorage\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/GoogleInterchangeUtilities\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/GoogleNetworkingUtilities\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/GoogleParsingUtilities\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/GoogleSymbolUtilities\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AdSupport\"",
+					"-framework",
+					"\"AddressBook\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"FirebaseAnalytics\"",
+					"-framework",
+					"\"FirebaseAuth\"",
+					"-framework",
+					"\"FirebaseDatabase\"",
+					"-framework",
+					"\"FirebaseInstanceID\"",
+					"-framework",
+					"\"FirebaseStorage\"",
+					"-framework",
+					"\"GoogleInterchangeUtilities\"",
+					"-framework",
+					"\"GoogleNetworkingUtilities\"",
+					"-framework",
+					"\"GoogleParsingUtilities\"",
+					"-framework",
+					"\"GoogleSymbolUtilities\"",
+					"-framework",
+					"\"GoogleUtilities\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"SafariServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"StoreKit\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jahedstrom.BloQuery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

@@ -10,6 +10,8 @@
 #import "AnswerCell.h"
 #import "QuestionManager.h"
 #import "Question.h"
+#import "AnswerView.h"
+#import <UIKit/UIKit.h>
 
 @interface AnswerViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -18,7 +20,12 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *questionLabelHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIImageView *questionProfileImage;
 
+@property (nonatomic, strong) UIView *testView;
+@property (weak, nonatomic) IBOutlet UITableView *answerTableView;
+@property (weak, nonatomic) IBOutlet AnswerView *answerView;
 
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *answerTableViewTopConstraint;
 
 @end
 
@@ -29,11 +36,23 @@
     
     self.questionBackgroundView.layer.cornerRadius = 5;
     self.questionProfileImage.layer.cornerRadius = 32;
+    
+
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.questionLabel.text = self.question.questionText;
+    self.answerView.tableView = self.answerTableView;
+}
+
+- (IBAction)addAnswerButtonPressed:(UIBarButtonItem *)sender {
+    
+    [self.answerView displayAnswerWindow];
+//    [self.view insertSubview:self.testView aboveSubview: self.answerTableView];
+//    [self.testView.topAnchor constraintEqualToAnchor:self.answerTableView.topAnchor constant:200];
+    
 }
 
 #pragma mark - Table View Delegate Methods

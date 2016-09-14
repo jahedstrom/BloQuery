@@ -169,6 +169,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wJe-I1-BmJ" customClass="AnswerView">
+                                <rect key="frame" x="16" y="334" width="339" height="149"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jI9-dJ-h4b">
                                 <rect key="frame" x="16" y="72" width="249" height="60"/>
                                 <subviews>
@@ -196,8 +200,8 @@
                                     <constraint firstAttribute="height" constant="64" id="zpm-1r-ADQ"/>
                                 </constraints>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="97" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0RL-C9-dQi">
-                                <rect key="frame" x="-4" y="144" width="383" height="523"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="97" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0RL-C9-dQi">
+                                <rect key="frame" x="-4" y="144" width="383" height="479"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AnswerCell" rowHeight="150" id="EEb-yI-cFM" customClass="AnswerCell">
@@ -283,11 +287,18 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Answers" id="rTM-Cy-tNh">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Kro-cx-Jx3"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Kro-cx-Jx3">
+                            <connections>
+                                <action selector="addAnswerButtonPressed:" destination="2U7-cp-5Dx" id="BU3-yH-ZdG"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="answerTableView" destination="0RL-C9-dQi" id="Ndr-f3-Cv3"/>
+                        <outlet property="answerTableViewTopConstraint" destination="tqH-8x-qA7" id="yWH-Ck-mdr"/>
+                        <outlet property="answerView" destination="wJe-I1-BmJ" id="TKJ-fU-xNZ"/>
                         <outlet property="questionBackgroundView" destination="jI9-dJ-h4b" id="DiK-dN-Xb5"/>
                         <outlet property="questionLabel" destination="PJ7-ed-qNJ" id="Im4-eh-mk5"/>
                         <outlet property="questionLabelHeightConstraint" destination="mN3-16-UFD" id="gyc-F4-22B"/>

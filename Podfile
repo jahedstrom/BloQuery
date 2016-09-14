@@ -10,7 +10,6 @@ pod 'Firebase'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
 pod 'Firebase/Storage'
-pod 'SDCAlertView', '~> 7.0'
 
   target 'BloQueryTests' do
     inherit! :search_paths
