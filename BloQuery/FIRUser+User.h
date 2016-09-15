@@ -14,5 +14,6 @@
 - (void)addUserData:(NSDictionary *)userData complete:(void (^)(NSError *error))block;
 
 - (void)addProfilePicture:(UIImage *)image complete:(void (^)(NSURL *profileImageURL, NSError *error))block;
+- (void)getProfilePicture:(NSURL *)imageURL complete:(void (^)(UIImage *profileImage, NSError *error))block;
 
 @end

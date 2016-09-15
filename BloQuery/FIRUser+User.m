@@ -73,5 +73,9 @@
 
 }
 
+- (void)getProfilePicture:(NSURL *)imageURL complete:(void (^)(UIImage *, NSError *))block {
+    
+}
+
 
 @end

@@ -8,6 +8,9 @@
 
 #import "QuestionCell.h"
 #import "Question.h"
+#import "FIRUser+User.h"
+
+@import FirebaseAuth;
 
 @interface QuestionCell ()
 
@@ -29,7 +32,10 @@
 - (void)setQuestion:(Question *)question {
     _question = question;
     //TODO: get profile image for user (something like this?)
-//    self.profileImage.image = [question.user getProfileImage];
+    FIRUser *firUser = [question getUserForQuestionUID:question.questionUID];
+    [firUser getProfilePicture:firUser.photoURL complete:^(UIImage *profileImage, NSError *error) {
+        self.profileImage.image = profileImage;
+    }];
     
     if (question.numberOfAnswers == 1) {
         self.numberOfAnswers.text = [NSString stringWithFormat:@"%ld Answer", (long) question.numberOfAnswers];

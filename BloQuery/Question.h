@@ -29,4 +29,6 @@
 - (void)saveToFirebaseWithCompletionHandler:(void (^)(NSError *error))block;
 - (void)retrieveAnswersWithCompletionHandler:(void (^)(NSArray *answers, NSError *error))block;
 
+- (FIRUser *)getUserForQuestionUID:(NSString *)uid;
+
 @end

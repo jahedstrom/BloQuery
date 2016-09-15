@@ -152,6 +152,12 @@
  
 }
 
+//- (FIRUser *)getUserForQuestionUID:(NSString *)uid {
+//
+//    
+//    return firUser;
+//}
+
 - (Answer *)getAnswerForIndex:(NSInteger)index {
     return self.answers[index];
 }
