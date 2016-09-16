@@ -8,6 +8,7 @@
 
 #import "QuestionCell.h"
 #import "Question.h"
+#import "User.h"
 
 @interface QuestionCell ()
 
@@ -29,7 +30,13 @@
 - (void)setQuestion:(Question *)question {
     _question = question;
     //TODO: get profile image for user (something like this?)
-//    self.profileImage.image = [question.user getProfileImage];
+    [question.user getProfileImageforUserWithCompletionHandler:^(UIImage *image, NSError *error) {
+        if (error == nil && image) {
+        self.profileImage.image = image;
+        } else {
+            self.profileImage.image = nil;
+        }
+    }];
     
     if (question.numberOfAnswers == 1) {
         self.numberOfAnswers.text = [NSString stringWithFormat:@"%ld Answer", (long) question.numberOfAnswers];

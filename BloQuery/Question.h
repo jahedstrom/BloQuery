@@ -10,10 +10,11 @@
 
 @class FIRUser;
 @class Answer;
+@class User;
 
 @interface Question : NSObject
 
-
+@property (nonatomic, strong) User *user;
 @property (nonatomic, strong) NSString *questionUID;
 @property (nonatomic, strong) NSString *questionText;
 @property (nonatomic, strong) NSString *firKey;
@@ -25,6 +26,8 @@
 
 - (Answer *)getAnswerForIndex:(NSInteger)index;
 - (void)addAnswerToQuestion:(Answer *)answer;
+
+- (void)getUserForQuestionUID:(NSString *)questionUID;
 
 - (void)saveToFirebaseWithCompletionHandler:(void (^)(NSError *error))block;
 - (void)retrieveAnswersWithCompletionHandler:(void (^)(NSArray *answers, NSError *error))block;

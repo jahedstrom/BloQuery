@@ -26,6 +26,7 @@
 		AB215AC51D7F30CB000722B1 /* QuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215AC41D7F30CB000722B1 /* QuestionViewController.m */; };
 		AB215AC81D7F45DC000722B1 /* FIRUser+User.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215AC71D7F45DC000722B1 /* FIRUser+User.m */; };
 		AB215ACE1D89A787000722B1 /* NewAnswerController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215ACD1D89A787000722B1 /* NewAnswerController.m */; };
+		AB215AD11D8B8DE8000722B1 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215AD01D8B8DE8000722B1 /* User.m */; };
 		B7206CBE07CA20E86B25A2E0 /* libPods-BloQuery.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B6D13C0DEAAEF55EB9F68BD /* libPods-BloQuery.a */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,8 @@
 		AB215AC71D7F45DC000722B1 /* FIRUser+User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FIRUser+User.m"; sourceTree = "<group>"; };
 		AB215ACC1D89A787000722B1 /* NewAnswerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewAnswerController.h; sourceTree = "<group>"; };
 		AB215ACD1D89A787000722B1 /* NewAnswerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewAnswerController.m; sourceTree = "<group>"; };
+		AB215ACF1D8B8DE8000722B1 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		AB215AD01D8B8DE8000722B1 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		E8EBE9F2A435214FD0CBE508 /* Pods-BloQuery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BloQuery.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BloQuery/Pods-BloQuery.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -190,6 +193,8 @@
 			children = (
 				AB215AC61D7F45DC000722B1 /* FIRUser+User.h */,
 				AB215AC71D7F45DC000722B1 /* FIRUser+User.m */,
+				AB215ACF1D8B8DE8000722B1 /* User.h */,
+				AB215AD01D8B8DE8000722B1 /* User.m */,
 				AB215AB21D511BD2000722B1 /* Question.h */,
 				AB215AB31D511BD2000722B1 /* Question.m */,
 				AB215AB51D52DFCD000722B1 /* Answer.h */,
@@ -430,6 +435,7 @@
 				AB215ABA1D52E4BF000722B1 /* QuestionManager.m in Sources */,
 				AB215AC01D543BD2000722B1 /* AnswerCell.m in Sources */,
 				AB215AC81D7F45DC000722B1 /* FIRUser+User.m in Sources */,
+				AB215AD11D8B8DE8000722B1 /* User.m in Sources */,
 				AB215ABD1D53C83D000722B1 /* AnswerViewController.m in Sources */,
 				AB215A7D1D451E87000722B1 /* AppDelegate.m in Sources */,
 				AB215AB41D511BD2000722B1 /* Question.m in Sources */,

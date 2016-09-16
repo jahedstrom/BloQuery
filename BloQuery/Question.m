@@ -8,6 +8,7 @@
 
 #import "Question.h"
 #import "Answer.h"
+#import "User.h"
 
 @import Firebase;
 @import FirebaseAuth;
@@ -16,7 +17,6 @@
 @interface Question ()
 
 @property (nonatomic, strong) FIRDatabaseReference *firRef;
-
 
 @end
 
@@ -31,6 +31,8 @@
         self.firKey = key;
         self.numberOfAnswers = [dictionary[@"numberOfAnswers"] integerValue];
         self.answers = [[NSArray alloc] init];
+        
+        [self getUserForQuestionUID:self.questionUID];
         }
     
     
@@ -81,6 +83,20 @@
     self.numberOfAnswers += 1;
 }
 
+- (void)getUserForQuestionUID:(NSString *)questionUID {
+    
+    FIRDatabaseReference *userRef = [[[[FIRDatabase database] reference] child:@"users"] child:questionUID];
+    
+    [userRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        if ([snapshot exists]) {
+            User *user = [[User alloc] initWithDictionary:snapshot.value];
+            self.user = user;
+        }
+    }];
+
+}
+
+
 
 - (void)saveToFirebaseWithCompletionHandler:(void (^)(NSError *))block {
  // store self.user, questionText, answers, and numberOfAnswers into Firebase
@@ -125,18 +141,17 @@
     
     [firAnswersRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
-        NSDictionary *answerDict = snapshot.value;
-        NSMutableArray *tempAnswers = [[NSMutableArray alloc] initWithCapacity:1];
-        NSError *error;
-        
-        if (!(answerDict == (id)[NSNull null])) {
+        if (snapshot.exists) {
+            NSDictionary *answerDict = snapshot.value;
+            NSMutableArray *tempAnswers = [[NSMutableArray alloc] initWithCapacity:1];
+
             [answerDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
                 Answer *answer = [[Answer alloc] initWithDictionary:obj];
                 [tempAnswers addObject:answer];
             }];
             self.answers = tempAnswers;
             self.numberOfAnswers = tempAnswers.count;
-            error = nil;
+            block(self.answers, nil);
         } else {
             self.answers = nil;
             self.numberOfAnswers = 0;
@@ -144,10 +159,9 @@
                                        NSLocalizedDescriptionKey: NSLocalizedString(@"Operation was unsuccessful.", nil),
                                        NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"There are no answers to the question", nil),
                                        };
-            error = [NSError errorWithDomain:@"com.jahedstrom.BloQuery" code:-1 userInfo:userInfo];
+            NSError *error = [NSError errorWithDomain:@"com.jahedstrom.BloQuery" code:-1 userInfo:userInfo];
+            block(nil, error);
         }
-        
-        block(self.answers, error);
     }];
  
 }
