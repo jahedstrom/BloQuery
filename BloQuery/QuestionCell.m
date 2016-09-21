@@ -30,11 +30,20 @@
 - (void)setQuestion:(Question *)question {
     _question = question;
     //TODO: get profile image for user (something like this?)
-    [question.user getProfileImageforUserWithCompletionHandler:^(UIImage *image, NSError *error) {
-        if (error == nil && image) {
-        self.profileImage.image = image;
-        } else {
-            self.profileImage.image = nil;
+    [question getUserWithCompletion:^(User *user, NSError *error) {
+        if (error == nil) {
+            _question.user = user;
+            [_question.user getProfileImageforUserWithCompletionHandler:^(UIImage *image, NSError *error) {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (error == nil && image) {
+                        self.profileImage.image = image;
+                    } else {
+                        self.profileImage.image = nil;
+                    }
+                    
+                });
+            }];
         }
     }];
     

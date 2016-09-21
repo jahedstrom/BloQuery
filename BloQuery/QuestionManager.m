@@ -52,12 +52,14 @@
         
         NSDictionary *questionDict = snapshot.value;
         
-        if (questionDict != nil) {
+        if ([snapshot exists]) {
             [_questions removeAllObjects];
             [questionDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
                 Question *question = [[Question alloc] initWithDictionary:obj andKey:(NSString *)key];
                 [_questions addObject:question];
             }];
+        } else {
+//            self.questions = nil;
         }
         //TODO check for errors and if necessary generate NSError object to send back in block
         block(self.questions, nil);

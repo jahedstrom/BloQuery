@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class FIRUser;
+
 @interface User : NSObject
 
 @property (nonatomic, readonly) NSString *uid;
@@ -17,6 +19,7 @@
 @property (nonatomic, strong) NSString *profileImageURL;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+- (instancetype)initWithFIRUser:(FIRUser *)user;
 
 - (void)getProfileImageforUserWithCompletionHandler:(void (^)(UIImage *image, NSError *error))block;
 

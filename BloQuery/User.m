@@ -8,6 +8,8 @@
 
 #import "User.h"
 
+@import FirebaseAuth;
+
 @implementation User
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
@@ -22,6 +24,20 @@
     
     return self;
 }
+
+- (instancetype)initWithFIRUser:(FIRUser *)user {
+    self = [super init];
+    
+    if (self) {
+        self.name = user.displayName;
+        self.email = user.email;
+        self.profileImageURL = [user.photoURL absoluteString];
+    }
+    
+    
+    return self;
+}
+
 
 - (void)getProfileImageforUserWithCompletionHandler:(void (^)(UIImage *, NSError *))block {
     

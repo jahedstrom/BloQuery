@@ -31,8 +31,8 @@
         self.firKey = key;
         self.numberOfAnswers = [dictionary[@"numberOfAnswers"] integerValue];
         self.answers = [[NSArray alloc] init];
-        
-        [self getUserForQuestionUID:self.questionUID];
+        // will be nil until getUserWithCompletion: is called in setQuestion [QuestionCell.m]
+//        self.user = [[User alloc] init];
         }
     
     
@@ -49,6 +49,7 @@
         self.firKey = nil;
         self.answers = [[NSArray alloc] init];
         self.numberOfAnswers = 0;
+        self.user = [[User alloc] initWithFIRUser:user];
     }
     
     return self;
@@ -83,14 +84,14 @@
     self.numberOfAnswers += 1;
 }
 
-- (void)getUserForQuestionUID:(NSString *)questionUID {
+- (void)getUserWithCompletion:(void (^)(User *, NSError *))block {
     
-    FIRDatabaseReference *userRef = [[[[FIRDatabase database] reference] child:@"users"] child:questionUID];
+    FIRDatabaseReference *userRef = [[[[FIRDatabase database] reference] child:@"users"] child:self.questionUID];
     
     [userRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         if ([snapshot exists]) {
             User *user = [[User alloc] initWithDictionary:snapshot.value];
-            self.user = user;
+            block(user, nil);
         }
     }];
 
