@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *descriptionTextField;
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutBarButton;
+@property (weak, nonatomic) IBOutlet UINavigationBar *profileViewNavBar;
 
 @property (nonatomic) BOOL isInEditMode;
 
@@ -84,7 +86,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)logoutButtonPressed:(UIButton *)sender {
+- (IBAction)logoutButtonPressed:(UIBarButtonItem *)sender {
     NSError *error = nil;
     [[FIRAuth auth] signOut:&error];
     if (error) {
