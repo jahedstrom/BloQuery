@@ -46,6 +46,8 @@
     [super viewDidLoad];
     
     self.inputsContainerView.layer.cornerRadius = 5;
+    self.profileImageView.layer.cornerRadius = 50;
+    self.profileImageView.clipsToBounds = YES;
     
     self.reference = [[FIRDatabase database] reference];
 }

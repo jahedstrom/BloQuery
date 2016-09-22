@@ -6,6 +6,79 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Profile View Controller-->
+        <scene sceneID="HJn-vZ-ble">
+            <objects>
+                <viewController id="vno-ub-XEa" customClass="ProfileViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ngN-r1-hw4"/>
+                        <viewControllerLayoutGuide type="bottom" id="yRT-8m-QVI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xOx-Ma-1OS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Portrait_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="zcf-Up-k8X">
+                                <rect key="frame" x="137" y="133" width="100" height="100"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jDD-pV-HjR">
+                                <rect key="frame" x="101" y="269" width="172" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rbt-pX-wgX">
+                                <rect key="frame" x="101" y="336" width="172" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NNJ-h5-tnm">
+                                <rect key="frame" x="160" y="313" width="55" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCF-0O-kWT">
+                                <rect key="frame" x="160" y="248" width="55" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IlM-Hw-yDt">
+                                <rect key="frame" x="20" y="607" width="66" height="30"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutButtonPressed:" destination="vno-ub-XEa" eventType="touchUpInside" id="MBv-Ua-FV9"/>
+                                </connections>
+                            </button>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rLM-Sh-Rpe">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <navigationItem title="Profile" id="urY-Ja-CZM">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="d1I-jt-OWl">
+                                            <connections>
+                                                <action selector="backButtonPressed:" destination="vno-ub-XEa" id="6ty-nV-Pan"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="rbt-pX-wgX" id="JWW-Rl-igz"/>
+                        <outlet property="profileImageView" destination="zcf-Up-k8X" id="DzL-7N-Zgl"/>
+                        <outlet property="usernameTextField" destination="jDD-pV-HjR" id="pff-25-yyf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dbD-cG-Jol" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1225.5" y="1016.5"/>
+        </scene>
         <!--BloQuery-->
         <scene sceneID="3Zi-ki-dGd">
             <objects>
@@ -98,9 +171,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="BloQuery" id="VJ9-4r-RSj">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="err-jC-Q6W">
+                        <barButtonItem key="leftBarButtonItem" image="ProfileIcon" id="err-jC-Q6W">
                             <connections>
-                                <action selector="logout:" destination="vwU-kH-cH1" id="jgf-Te-E9t"/>
+                                <action selector="viewProfileButtonPressed:" destination="vwU-kH-cH1" id="CGP-Rx-WEB"/>
+                                <segue destination="vno-ub-XEa" kind="presentation" id="OQh-0e-gql"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Khb-nb-jbp">
@@ -116,7 +190,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bn6-fb-wU5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-884.5" y="107.5"/>
+            <point key="canvasLocation" x="-828.5" y="116.5"/>
         </scene>
         <!--Ask...-->
         <scene sceneID="wFz-HL-95Q">
@@ -301,7 +375,7 @@
             </objects>
             <point key="canvasLocation" x="-19.5" y="375.5"/>
         </scene>
-        <!--New Answer Controller-->
+        <!--Add An Answer-->
         <scene sceneID="GmU-Ui-fu8">
             <objects>
                 <viewController id="NnD-db-HXE" customClass="NewAnswerController" sceneMemberID="viewController">
@@ -334,6 +408,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Add An Answer" id="DNy-JG-iXk"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="questionLabel" destination="vtp-23-wF2" id="Q43-id-ID8"/>
@@ -495,10 +570,11 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-817" y="997"/>
+            <point key="canvasLocation" x="-581.5" y="1032.5"/>
         </scene>
     </scenes>
     <resources>
         <image name="Portrait_placeholder" width="180" height="220"/>
+        <image name="ProfileIcon" width="24" height="24"/>
     </resources>
 </document>

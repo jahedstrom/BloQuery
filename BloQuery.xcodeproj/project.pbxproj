@@ -27,6 +27,7 @@
 		AB215AC81D7F45DC000722B1 /* FIRUser+User.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215AC71D7F45DC000722B1 /* FIRUser+User.m */; };
 		AB215ACE1D89A787000722B1 /* NewAnswerController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215ACD1D89A787000722B1 /* NewAnswerController.m */; };
 		AB215AD11D8B8DE8000722B1 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215AD01D8B8DE8000722B1 /* User.m */; };
+		AB215AD41D937112000722B1 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215AD31D937112000722B1 /* ProfileViewController.m */; };
 		B7206CBE07CA20E86B25A2E0 /* libPods-BloQuery.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B6D13C0DEAAEF55EB9F68BD /* libPods-BloQuery.a */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,8 @@
 		AB215ACD1D89A787000722B1 /* NewAnswerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewAnswerController.m; sourceTree = "<group>"; };
 		AB215ACF1D8B8DE8000722B1 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		AB215AD01D8B8DE8000722B1 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		AB215AD21D937112000722B1 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		AB215AD31D937112000722B1 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		E8EBE9F2A435214FD0CBE508 /* Pods-BloQuery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BloQuery.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BloQuery/Pods-BloQuery.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -183,6 +186,8 @@
 				AB215ABC1D53C83D000722B1 /* AnswerViewController.m */,
 				AB215AA41D4857D0000722B1 /* LoginViewController.h */,
 				AB215AA51D4857D0000722B1 /* LoginViewController.m */,
+				AB215AD21D937112000722B1 /* ProfileViewController.h */,
+				AB215AD31D937112000722B1 /* ProfileViewController.m */,
 				AB215AC21D760D18000722B1 /* Constants.h */,
 			);
 			name = Controller;
@@ -431,6 +436,7 @@
 				AB215AC51D7F30CB000722B1 /* QuestionViewController.m in Sources */,
 				AB215AA31D4856F8000722B1 /* QuestionsTableViewController.m in Sources */,
 				AB215AB71D52DFCD000722B1 /* Answer.m in Sources */,
+				AB215AD41D937112000722B1 /* ProfileViewController.m in Sources */,
 				AB215ACE1D89A787000722B1 /* NewAnswerController.m in Sources */,
 				AB215ABA1D52E4BF000722B1 /* QuestionManager.m in Sources */,
 				AB215AC01D543BD2000722B1 /* AnswerCell.m in Sources */,

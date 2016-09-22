@@ -62,6 +62,10 @@
     
 }
 
+- (IBAction)viewProfileButtonPressed:(UIBarButtonItem *)sender {
+
+}
+
 - (IBAction)newQuestionButtonPressed:(UIBarButtonItem *)sender {
     
     NSLog(@"New question button pressed");
