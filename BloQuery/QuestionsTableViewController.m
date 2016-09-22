@@ -10,6 +10,9 @@
 #import "QuestionManager.h"
 #import "QuestionCell.h"
 #import "AnswerViewController.h"
+#import "ProfileViewController.h"
+#import "Question.h"
+#import "User.h"
 
 
 @import Firebase;
@@ -62,10 +65,6 @@
     
 }
 
-- (IBAction)viewProfileButtonPressed:(UIBarButtonItem *)sender {
-
-}
-
 - (IBAction)newQuestionButtonPressed:(UIBarButtonItem *)sender {
     
     NSLog(@"New question button pressed");
@@ -100,6 +99,30 @@
         controller.question = [QuestionManager sharedInstance].questions[selectedPath.row];
     }
     
+    if ([segue.identifier isEqualToString:@"showProfileView"]) {
+        
+        UIButton *button = (UIButton *)sender;
+        CGPoint center = button.center;
+
+        CGPoint rootViewPoint = [button.superview convertPoint:center toView:self.tableView];
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:rootViewPoint];
+        
+        ProfileViewController *controller = (ProfileViewController *)segue.destinationViewController;
+        
+        Question *question = [QuestionManager sharedInstance].questions[indexPath.row];
+        
+        controller.user = question.user;
+    }
+    
+    if ([segue.identifier isEqualToString:@"showCurrentUserProfile"]) {
+    
+        FIRUser *firUser = [FIRAuth auth].currentUser;
+        ProfileViewController *controller = (ProfileViewController *)segue.destinationViewController;
+        
+        User *user = [[User alloc] initWithFIRUser:firUser];
+        controller.user = user;
+    }
+
     
 }
 

@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UILabel *likeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numberOfAnswers;
+@property (weak, nonatomic) IBOutlet UIButton *didTapUserProfileImage;
 
 @property (nonatomic, strong) Question *question;
 

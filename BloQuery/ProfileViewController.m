@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 
 @end
 
@@ -31,23 +32,43 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    
     FIRUser *currentUser = [FIRAuth auth].currentUser;
     
-    User *user = [[User alloc] initWithFIRUser:currentUser];
-    
-    self.usernameTextField.text = user.name;
-    self.emailTextField.text = user.email;
-    
-    [user getProfileImageforUserWithCompletionHandler:^(UIImage *image, NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (error == nil && image) {
-                self.profileImageView.image = image;
-            } else {
-                self.profileImageView.image = nil;
-            }
-        });
-    }];
+    if (self.user.uid == currentUser.uid) {
+        self.logoutButton.hidden = NO;
+        User *user = [[User alloc] initWithFIRUser:currentUser];
+        
+        self.usernameTextField.text = user.name;
+        self.emailTextField.text = user.email;
+        
+        [user getProfileImageforUserWithCompletionHandler:^(UIImage *image, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (error == nil && image) {
+                    self.profileImageView.image = image;
+                } else {
+                    self.profileImageView.image = nil;
+                }
+            });
+        }];
+        
+    } else {
+        self.logoutButton.hidden = YES;
+        self.usernameTextField.text = self.user.name;
+        self.emailTextField.text = self.user.email;
+        
+        [self.user getProfileImageforUserWithCompletionHandler:^(UIImage *image, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (error == nil && image) {
+                    self.profileImageView.image = image;
+                } else {
+                    self.profileImageView.image = nil;
+                }
+            });
+        }];
+    }
 }
+
 - (IBAction)backButtonPressed:(UIBarButtonItem *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

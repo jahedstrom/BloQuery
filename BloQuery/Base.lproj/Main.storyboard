@@ -43,13 +43,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IlM-Hw-yDt">
-                                <rect key="frame" x="20" y="607" width="66" height="30"/>
-                                <state key="normal" title="Logout"/>
-                                <connections>
-                                    <action selector="logoutButtonPressed:" destination="vno-ub-XEa" eventType="touchUpInside" id="MBv-Ua-FV9"/>
-                                </connections>
-                            </button>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rLM-Sh-Rpe">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -63,6 +56,13 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IlM-Hw-yDt">
+                                <rect key="frame" x="20" y="585" width="66" height="30"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutButtonPressed:" destination="vno-ub-XEa" eventType="touchUpInside" id="MBv-Ua-FV9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -71,6 +71,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="emailTextField" destination="rbt-pX-wgX" id="JWW-Rl-igz"/>
+                        <outlet property="logoutButton" destination="IlM-Hw-yDt" id="L9R-jn-hNa"/>
                         <outlet property="profileImageView" destination="zcf-Up-k8X" id="DzL-7N-Zgl"/>
                         <outlet property="usernameTextField" destination="jDD-pV-HjR" id="pff-25-yyf"/>
                     </connections>
@@ -141,6 +142,12 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mvq-Bg-NMb">
+                                            <rect key="frame" x="299" y="16" width="64" height="64"/>
+                                            <connections>
+                                                <segue destination="vno-ub-XEa" kind="presentation" identifier="showProfileView" id="L9t-l8-Bkw"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.35294117650000001" green="0.73333333329999995" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
@@ -157,6 +164,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="QuestionBackgroundView" destination="5mj-78-qce" id="Hxj-wv-vCQ"/>
+                                    <outlet property="didTapUserProfileImage" destination="mvq-Bg-NMb" id="DbC-np-Ytd"/>
                                     <outlet property="likeLabel" destination="wu9-99-5n9" id="eeD-HR-vaD"/>
                                     <outlet property="numberOfAnswers" destination="S4W-YF-eLU" id="xob-eJ-wOH"/>
                                     <outlet property="profileImage" destination="q4C-Zv-eEZ" id="dpD-VY-WDk"/>
@@ -173,8 +181,7 @@
                     <navigationItem key="navigationItem" title="BloQuery" id="VJ9-4r-RSj">
                         <barButtonItem key="leftBarButtonItem" image="ProfileIcon" id="err-jC-Q6W">
                             <connections>
-                                <action selector="viewProfileButtonPressed:" destination="vwU-kH-cH1" id="CGP-Rx-WEB"/>
-                                <segue destination="vno-ub-XEa" kind="presentation" id="OQh-0e-gql"/>
+                                <segue destination="vno-ub-XEa" kind="presentation" identifier="showCurrentUserProfile" id="OQh-0e-gql"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Khb-nb-jbp">
@@ -577,4 +584,7 @@
         <image name="Portrait_placeholder" width="180" height="220"/>
         <image name="ProfileIcon" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="OQh-0e-gql"/>
+    </inferredMetricsTieBreakers>
 </document>
