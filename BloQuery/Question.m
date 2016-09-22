@@ -90,7 +90,7 @@
     
     [userRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         if ([snapshot exists]) {
-            User *user = [[User alloc] initWithDictionary:snapshot.value];
+            User *user = [[User alloc] initWithDictionary:snapshot.value andUID:snapshot.key];
             block(user, nil);
         }
     }];

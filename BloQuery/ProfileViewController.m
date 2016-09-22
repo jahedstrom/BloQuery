@@ -16,7 +16,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *descriptionTextField;
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
+
+@property (nonatomic) BOOL isInEditMode;
 
 @end
 
@@ -37,6 +40,7 @@
     
     if (self.user.uid == currentUser.uid) {
         self.logoutButton.hidden = NO;
+        self.isInEditMode = YES;
         User *user = [[User alloc] initWithFIRUser:currentUser];
         
         self.usernameTextField.text = user.name;
@@ -54,8 +58,15 @@
         
     } else {
         self.logoutButton.hidden = YES;
+        self.isInEditMode = NO;
+        
+        self.usernameTextField.borderStyle = UITextBorderStyleNone;
+        self.emailTextField.borderStyle = UITextBorderStyleNone;
+        self.descriptionTextField.borderStyle = UITextBorderStyleNone;
+        
         self.usernameTextField.text = self.user.name;
         self.emailTextField.text = self.user.email;
+        self.descriptionTextField.text = self.user.descriptionText;
         
         [self.user getProfileImageforUserWithCompletionHandler:^(UIImage *image, NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -82,4 +93,11 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    if (self.isInEditMode) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
 @end

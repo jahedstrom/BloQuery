@@ -10,15 +10,23 @@
 
 @import FirebaseAuth;
 
+@interface User ()
+
+@property (nonatomic, strong) NSString *uid;
+
+@end
+
 @implementation User
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary andUID:(NSString *)uid {
     self = [super init];
     
     if (self) {
+        self.uid = uid;
         self.name = dictionary[@"name"];
         self.email = dictionary[@"email"];
         self.profileImageURL = dictionary[@"profileImageURL"];
+//        self.descriptionText = dictionary[@"description"];
     }
     
     
@@ -29,6 +37,7 @@
     self = [super init];
     
     if (self) {
+        self.uid = user.uid;
         self.name = user.displayName;
         self.email = user.email;
         self.profileImageURL = [user.photoURL absoluteString];

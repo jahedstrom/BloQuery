@@ -138,7 +138,7 @@
             if (user != nil) {
                 NSLog(@"successfully logged in");
                 
-                NSDictionary *userDict = @{@"name" : fullName, @"email" : email, @"image" : profileImage};
+                NSDictionary *userDict = @{@"name" : fullName, @"email" : email, @"image" : profileImage, @"description" : @""};
                 
                 [user addUserData:userDict complete:^(NSError *error) {
                     if (error == nil) {

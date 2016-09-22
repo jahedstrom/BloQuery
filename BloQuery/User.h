@@ -17,8 +17,9 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSString *profileImageURL;
+@property (nonatomic, strong) NSString *descriptionText;
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary andUID:(NSString *)uid;
 - (instancetype)initWithFIRUser:(FIRUser *)user;
 
 - (void)getProfileImageforUserWithCompletionHandler:(void (^)(UIImage *image, NSError *error))block;

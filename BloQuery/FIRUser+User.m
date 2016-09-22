@@ -36,9 +36,9 @@
                     // Profile updated.
                     NSLog(@"Profile updated successfully");
                     // Store user data into Firebase
-                    NSDictionary *userDict = @{@"name" : userData[@"name"], @"email" : userData[@"email"], @"profileImageURL" : profileImageURL.absoluteString};
+                    NSDictionary *userDict = @{@"name" : userData[@"name"], @"email" : userData[@"email"], @"profileImageURL" : profileImageURL.absoluteString, @"description" : userData[@"description"]};
                     FIRDatabaseReference *userRef = [[[[FIRDatabase database] reference] child:@"users"] child:user.uid];
-                    [userRef setValue:userDict withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+                    [userRef updateChildValues:userDict withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
                         if (error) {
                             block(error);
                         } else {
