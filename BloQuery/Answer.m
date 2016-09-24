@@ -7,6 +7,7 @@
 //
 
 #import "Answer.h"
+#import "User.h"
 
 @import Firebase;
 @import FirebaseAuth;
@@ -26,6 +27,7 @@
     if (self) {
         self.answerUID = dictionary[@"UID"];
         self.answerText = dictionary[@"answerText"];
+        self.numberOfVotes = dictionary[@"numberOfVotes"];
     }
     
     
@@ -39,6 +41,7 @@
     if (self) {
         self.answerUID = user.uid;
         self.answerText = answerText;
+        self.numberOfVotes = 0;
     }
     
     return self;
@@ -75,7 +78,18 @@
     [[[[self.firRef child:@"answers"] child:key] childByAutoId] setValue:[self dictionary]];
     
     block(nil);
+}
+
+- (void)getUserWithCompletion:(void (^)(User *, NSError *))block {
     
+    FIRDatabaseReference *userRef = [[[[FIRDatabase database] reference] child:@"users"] child:self.answerUID];
+    
+    [userRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        if ([snapshot exists]) {
+            User *user = [[User alloc] initWithDictionary:snapshot.value andUID:snapshot.key];
+            block(user, nil);
+        }
+    }];
     
 }
 

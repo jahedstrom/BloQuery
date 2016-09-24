@@ -82,6 +82,14 @@
     
     // increase answer count 
     self.numberOfAnswers += 1;
+    
+    [self updateQuestionCompletionHandler:^(NSError *error) {
+        if (error == nil) {
+            
+        } else {
+            // TODO something with error
+        }
+    }];
 }
 
 - (void)getUserWithCompletion:(void (^)(User *, NSError *))block {
@@ -97,7 +105,18 @@
 
 }
 
-
+- (void)updateQuestionCompletionHandler:(void (^)(NSError *))block {
+    // get reference to current question
+    FIRDatabaseReference *currentQuestionRef = [[[[FIRDatabase database] reference] child:@"questions"] child:self.firKey];
+    
+    [currentQuestionRef updateChildValues:[self dictionary] withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+        if (error == nil) {
+            self.firKey = ref.key;
+        } else {
+            // TODO something with error
+        }
+    }];
+}
 
 - (void)saveToFirebaseWithCompletionHandler:(void (^)(NSError *))block {
  // store self.user, questionText, answers, and numberOfAnswers into Firebase
@@ -168,7 +187,11 @@
 }
 
 - (Answer *)getAnswerForIndex:(NSInteger)index {
-    return self.answers[index];
+    if ([self.answers count]) {
+        return self.answers[index];
+    } else {
+        return nil;
+    }
 }
 
 @end

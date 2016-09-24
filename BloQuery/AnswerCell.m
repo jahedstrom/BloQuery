@@ -8,6 +8,7 @@
 
 #import "AnswerCell.h"
 #import "Answer.h"
+#import "User.h"
 
 @interface AnswerCell ()
 
@@ -29,8 +30,21 @@
     _answer = answer;
     
     self.answerLabel.text = answer.answerText;
-    //TODO: how to get the actual image from profileImageURL?
-//    self.answerProfileImage = answer.user.profileImageURL;
+   [self.answer getUserWithCompletion:^(User *user, NSError *error) {
+       if (error == nil) {
+           [user getProfileImageforUserWithCompletionHandler:^(UIImage *image, NSError *error) {
+               
+               dispatch_async(dispatch_get_main_queue(), ^{
+                   if (error == nil && image) {
+                       self.answerProfileImage.image = image;
+                   } else {
+                       self.answerProfileImage.image = nil;
+                   }
+                   
+               });
+           }];
+       }
+   }];
 }
 
 

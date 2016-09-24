@@ -10,6 +10,7 @@
 #import "AnswerCell.h"
 #import "QuestionManager.h"
 #import "Question.h"
+#import "User.h"
 #import "NewAnswerController.h"
 
 @interface AnswerViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -49,6 +50,18 @@
             NSLog(@"an error occured: %@", error.userInfo);
             }
         }
+    }];
+    
+    [self.question.user getProfileImageforUserWithCompletionHandler:^(UIImage *image, NSError *error) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error == nil && image) {
+                self.questionProfileImage.image = image;
+            } else {
+                self.questionProfileImage.image = nil;
+            }
+            
+        });
     }];
     
 }

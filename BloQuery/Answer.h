@@ -15,11 +15,13 @@
 
 @property (nonatomic, strong) NSString *answerText;
 @property (nonatomic, strong) NSString *answerUID;
+@property (nonatomic, strong) NSNumber *numberOfVotes; // Use NSNumber becuase that is a native Firebase type
 
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 - (instancetype)initWithUser:(FIRUser *)user andAnswerText:(NSString *)answerText;
 
 - (void)saveToFirebaseWithKey:(NSString *)key andCompletionHandler:(void (^)(NSError *error))block;
+- (void)getUserWithCompletion:(void (^)(User *user, NSError *error))block;
 
 @end
