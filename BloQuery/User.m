@@ -9,6 +9,7 @@
 #import "User.h"
 
 @import FirebaseAuth;
+@import FirebaseDatabase;
 
 @interface User ()
 
@@ -26,7 +27,7 @@
         self.name = dictionary[@"name"];
         self.email = dictionary[@"email"];
         self.profileImageURL = dictionary[@"profileImageURL"];
-//        self.descriptionText = dictionary[@"description"];
+        self.descriptionText = dictionary[@"description"];
     }
     
     
@@ -45,6 +46,19 @@
     
     
     return self;
+}
+
+- (void)getUserDataWithCompletion:(void (^)(User *, NSError *))block {
+    
+    FIRDatabaseReference *userRef = [[[[FIRDatabase database] reference] child:@"users"] child:self.uid];
+    
+    [userRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        if ([snapshot exists]) {
+            User *user = [[User alloc] initWithDictionary:snapshot.value andUID:snapshot.key];
+            block(user, nil);
+        }
+    }];
+    
 }
 
 

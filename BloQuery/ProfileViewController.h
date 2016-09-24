@@ -13,5 +13,6 @@
 @interface ProfileViewController : UIViewController
 
 @property (nonatomic, strong) User *user;
+@property (nonatomic) BOOL isCurrentUser;
 
 @end

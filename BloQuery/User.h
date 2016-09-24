@@ -23,6 +23,8 @@
 - (instancetype)initWithFIRUser:(FIRUser *)user;
 
 - (void)getProfileImageforUserWithCompletionHandler:(void (^)(UIImage *image, NSError *error))block;
+- (void)getUserDataWithCompletion:(void (^)(User *, NSError *))block;
+
 
 
 @end

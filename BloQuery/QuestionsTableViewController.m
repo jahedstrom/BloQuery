@@ -112,15 +112,17 @@
         Question *question = [QuestionManager sharedInstance].questions[indexPath.row];
         
         controller.user = question.user;
+        controller.isCurrentUser = NO;
     }
     
     if ([segue.identifier isEqualToString:@"showCurrentUserProfile"]) {
     
         FIRUser *firUser = [FIRAuth auth].currentUser;
         ProfileViewController *controller = (ProfileViewController *)segue.destinationViewController;
-        
+
         User *user = [[User alloc] initWithFIRUser:firUser];
         controller.user = user;
+        controller.isCurrentUser = YES;
     }
 
     

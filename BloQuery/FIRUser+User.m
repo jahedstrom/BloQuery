@@ -35,16 +35,31 @@
                 } else {
                     // Profile updated.
                     NSLog(@"Profile updated successfully");
-                    // Store user data into Firebase
-                    NSDictionary *userDict = @{@"name" : userData[@"name"], @"email" : userData[@"email"], @"profileImageURL" : profileImageURL.absoluteString, @"description" : userData[@"description"]};
-                    FIRDatabaseReference *userRef = [[[[FIRDatabase database] reference] child:@"users"] child:user.uid];
-                    [userRef updateChildValues:userDict withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-                        if (error) {
-                            block(error);
-                        } else {
-                            block(nil);
-                        }
-                    }];     
+                    // update email address if required
+                    if (![user.email isEqualToString:userData[@"email" ]]) {
+
+                        
+                        [user updateEmail:userData[@"email"] completion:^(NSError * _Nullable error) {
+                            if (error) {
+                                block(error);
+                            } else {
+                                NSLog(@"email updated?");
+                                NSLog(@"Currentuser email: %@", user.email);
+                                NSLog(@"New Email address: %@", userData[@"email"]);
+                                // Store user data into Firebase
+                                NSDictionary *userDict = @{@"name" : userData[@"name"], @"email" : userData[@"email"], @"profileImageURL" : profileImageURL.absoluteString, @"description" : userData[@"description"]};
+                                FIRDatabaseReference *userRef = [[[[FIRDatabase database] reference] child:@"users"] child:user.uid];
+                                [userRef updateChildValues:userDict withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+                                    if (error) {
+                                        block(error);
+                                    } else {
+                                        block(nil);
+                                    }
+                                }];
+                            }
+                         }];
+                    }
+                    
                 }
             }];
         }
@@ -69,7 +84,7 @@
     FIRStorageReference *profileImageNameRef = [profileImagesRef child:profileImageName];
     
     
-    // Upload the file to the path "profile_images/image-name.png"
+    // Upload the file to the path "profile_images/image-name.jpg"
     [profileImageNameRef putData:profileImageData metadata:nil completion:^(FIRStorageMetadata *metadata, NSError *error) {
         if (error != nil) {
             NSLog(@"File upload error: %@", error);
@@ -83,6 +98,5 @@
     }];
 
 }
-
 
 @end
