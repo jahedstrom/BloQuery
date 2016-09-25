@@ -8,13 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
-@class Answer;
+@class Answer, AnswerCell;
+
+@protocol AnswerCellDelegate <NSObject>
+
+- (void)cellDidPressVoteButton:(AnswerCell *)cell;
+
+@end
+
 
 @interface AnswerCell : UITableViewCell
+
+@property (nonatomic, weak) id <AnswerCellDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UILabel *answerLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *answerProfileImage;
 @property (weak, nonatomic) IBOutlet UILabel *answerLikesLabel;
+@property (weak, nonatomic) IBOutlet UIButton *likeButton;
 
 @property (nonatomic, strong) Answer *answer;
 

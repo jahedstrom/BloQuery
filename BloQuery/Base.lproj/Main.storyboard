@@ -477,6 +477,13 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qpN-sW-dRv">
+                                                    <rect key="frame" x="306" y="97" width="30" height="30"/>
+                                                    <state key="normal" image="likebutton_unselected"/>
+                                                    <connections>
+                                                        <action selector="likeButtonTapped:" destination="EEb-yI-cFM" eventType="touchUpInside" id="aF4-4c-fI4"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="eup-8J-bBN" firstAttribute="leading" secondItem="LoP-I4-cuM" secondAttribute="trailing" constant="20" id="59Y-3L-8BX"/>
@@ -494,6 +501,7 @@
                                             <outlet property="answerLabel" destination="7zQ-iG-OJm" id="6Bx-fy-K2f"/>
                                             <outlet property="answerLikesLabel" destination="eup-8J-bBN" id="QDr-wD-kiz"/>
                                             <outlet property="answerProfileImage" destination="LoP-I4-cuM" id="87b-6a-76E"/>
+                                            <outlet property="likeButton" destination="qpN-sW-dRv" id="E0n-Un-7aj"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -736,6 +744,7 @@
     <resources>
         <image name="Portrait_placeholder" width="180" height="220"/>
         <image name="ProfileIcon" width="24" height="24"/>
+        <image name="likebutton_unselected" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="OQh-0e-gql"/>

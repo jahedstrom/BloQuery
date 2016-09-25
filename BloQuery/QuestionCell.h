@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *likeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numberOfAnswers;
 @property (weak, nonatomic) IBOutlet UIButton *didTapUserProfileImage;
-@property (weak, nonatomic) IBOutlet UITextField *numberOfAnswersTextField;
 
 @property (nonatomic, strong) Question *question;
 

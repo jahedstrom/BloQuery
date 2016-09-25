@@ -8,12 +8,13 @@
 
 #import "AnswerViewController.h"
 #import "AnswerCell.h"
+#import "Answer.h"
 #import "QuestionManager.h"
 #import "Question.h"
 #import "User.h"
 #import "NewAnswerController.h"
 
-@interface AnswerViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface AnswerViewController () <UITableViewDelegate, UITableViewDataSource, AnswerCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *questionBackgroundView;
 @property (weak, nonatomic) IBOutlet UILabel *questionLabel;
@@ -66,6 +67,20 @@
     
 }
 
+#pragma mark - AnswerCell Delegate Methods
+
+- (void)cellDidPressVoteButton:(AnswerCell *)cell {
+    Answer *answer = cell.answer;
+    
+    [answer changeVoteCountOnAnswerWithKey:self.question.firKey andCompletionHandler:^(NSError *error) {
+        if (cell.answer == answer) {
+            cell.answer = answer;
+        }
+    }];
+    
+    cell.answer = answer;
+}
+
 #pragma mark - Table View Delegate Methods
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -83,6 +98,7 @@
     
     AnswerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AnswerCell"];
     
+    cell.delegate = self;
     cell.answer = [self.question getAnswerForIndex:indexPath.row];
     
     return cell;

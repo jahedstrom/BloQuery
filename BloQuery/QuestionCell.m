@@ -52,7 +52,6 @@
     } else {
         self.numberOfAnswers.text = [NSString stringWithFormat:@"%ld Answers", (long) question.numberOfAnswers];
     }
-    self.numberOfAnswersTextField.text = [NSString stringWithFormat:@"%ld", question.numberOfAnswers];
     //TODO: assign 1,2, or 3 thumbs up depending on how many likes there are
     NSString *likeSeries = [NSString stringWithUTF8String:"\xF0\x9F\x91\x8D \xF0\x9F\x91\x8D"];
     self.likeLabel.text = likeSeries;

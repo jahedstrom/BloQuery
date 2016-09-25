@@ -166,7 +166,7 @@
             NSMutableArray *tempAnswers = [[NSMutableArray alloc] initWithCapacity:1];
 
             [answerDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-                Answer *answer = [[Answer alloc] initWithDictionary:obj];
+                Answer *answer = [[Answer alloc] initWithDictionary:obj andKey:key];
                 [tempAnswers addObject:answer];
             }];
             self.answers = tempAnswers;
