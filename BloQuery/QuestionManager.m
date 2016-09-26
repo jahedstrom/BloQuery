@@ -46,24 +46,29 @@
 
 - (void)retrieveQuestionsWithCompletionHandler:(void (^)(NSArray *questions, NSError *error))block {
     FIRDatabaseReference *firRef = [[[FIRDatabase database] reference] child:@"questions"];
-    
-    [firRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+
+        [[firRef queryOrderedByChild:@"numberOfAnswers"] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+
 //        NSLog(@"snapshot: %@", snapshot.value);
-        
-        NSDictionary *questionDict = snapshot.value;
-        
+
         if ([snapshot exists]) {
             [_questions removeAllObjects];
-            [questionDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-                Question *question = [[Question alloc] initWithDictionary:obj andKey:(NSString *)key];
+            for (FIRDataSnapshot *snap in snapshot.children) {
+                NSLog(@"snap: %@", snap);
+                Question *question = [[Question alloc] initWithDictionary:snap.value andKey:snap.key];
                 [_questions addObject:question];
-            }];
+            }
         } else {
 //            self.questions = nil;
         }
         //TODO check for errors and if necessary generate NSError object to send back in block
         block(self.questions, nil);
     }];
+}
+
+- (void)reverseArray {
+    NSArray* reversedArray = [[self.questions reverseObjectEnumerator] allObjects];
+    self.questions = reversedArray;
 }
 
 - (void)loadTestData {
