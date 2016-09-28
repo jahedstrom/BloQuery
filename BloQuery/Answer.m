@@ -131,7 +131,7 @@
             voters[uid] = @YES;
         }
         answer[@"voters"] = voters;
-        answer[@"numberOfVotes"] = [NSNumber numberWithInt:numberOfVotes];
+        answer[@"numberOfVotes"] = @(numberOfVotes);
         
         // Set value and report transaction success
         [currentData setValue:answer];

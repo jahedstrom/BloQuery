@@ -159,18 +159,19 @@
 - (void)retrieveAnswersWithCompletionHandler:(void (^)(NSArray *, NSError *))block {
     FIRDatabaseReference *firAnswersRef = [[[[FIRDatabase database] reference] child:@"answers"] child:self.firKey];
     
-    [firAnswersRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        
+        [[firAnswersRef queryOrderedByChild:@"numberOfVotes"] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+ 
         if (snapshot.exists) {
-            NSDictionary *answerDict = snapshot.value;
             NSMutableArray *tempAnswers = [[NSMutableArray alloc] initWithCapacity:1];
 
-            [answerDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-                Answer *answer = [[Answer alloc] initWithDictionary:obj andKey:key];
+            for (FIRDataSnapshot *snap in snapshot.children) {
+                Answer *answer = [[Answer alloc] initWithDictionary:snap.value andKey:snap.key];
                 [tempAnswers addObject:answer];
-            }];
-            self.answers = tempAnswers;
+            }
+
+            self.answers = [[tempAnswers reverseObjectEnumerator] allObjects];
             self.numberOfAnswers = tempAnswers.count;
+            
             block(self.answers, nil);
         } else {
             self.answers = nil;

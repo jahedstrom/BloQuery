@@ -17,6 +17,4 @@
 
 - (void)retrieveQuestionsWithCompletionHandler:(void (^)(NSArray *questions, NSError *error))block;
 
-- (void)reverseArray;
-
 @end

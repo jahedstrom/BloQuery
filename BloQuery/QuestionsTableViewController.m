@@ -37,7 +37,6 @@
     if (user != nil) {
         // User is signed in.
         [[QuestionManager sharedInstance] retrieveQuestionsWithCompletionHandler:^(NSArray *questions, NSError *error) {
-            [[QuestionManager sharedInstance] reverseArray];
             [self.tableView reloadData];
         }];
         

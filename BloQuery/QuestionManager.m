@@ -61,14 +61,11 @@
         } else {
 //            self.questions = nil;
         }
-        //TODO check for errors and if necessary generate NSError object to send back in block
-        block(self.questions, nil);
-    }];
-}
-
-- (void)reverseArray {
-    NSArray* reversedArray = [[self.questions reverseObjectEnumerator] allObjects];
-    self.questions = reversedArray;
+            NSArray* reversedArray = [[self.questions reverseObjectEnumerator] allObjects];
+            self.questions = reversedArray;
+            //TODO check for errors and if necessary generate NSError object to send back in block
+            block(self.questions, nil);
+        }];
 }
 
 - (void)loadTestData {

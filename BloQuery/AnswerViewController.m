@@ -78,7 +78,7 @@
         }
     }];
     
-    cell.answer = answer;
+//    cell.answer = answer;
 }
 
 #pragma mark - Table View Delegate Methods
